@@ -570,31 +570,8 @@ $<span class="w"> </span>helm<span class="w"> </span>upgrade<span class="w"> </s
 </pre></div>
 </div>
 </section>
-<section id="step-4-configure-kai-scheduler">
-<h2>Step 4: Configure KAI Scheduler<a class="headerlink" href="#step-4-configure-kai-scheduler" title="Link to this heading">#</a></h2>
-<p>Install the KAI scheduler (see <a class="reference internal" href="dependencies/dependencies.html#installing-kai"><span class="std std-ref">Install KAI Scheduler</span></a>), then configure it for the backend:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cat<span class="w"> </span><span class="s">&lt;&lt; EOF &gt; /tmp/scheduler_settings.json</span>
-<span class="s">{</span>
-<span class="s">  &quot;scheduler_settings&quot;: {</span>
-<span class="s">    &quot;scheduler_type&quot;: &quot;kai&quot;,</span>
-<span class="s">    &quot;scheduler_name&quot;: &quot;kai-scheduler&quot;,</span>
-<span class="s">    &quot;coscheduling&quot;: true,</span>
-<span class="s">    &quot;scheduler_timeout&quot;: 30</span>
-<span class="s">  }</span>
-<span class="s">}</span>
-<span class="s">EOF</span>
-
-$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">BACKEND_NAME</span><span class="o">=</span>default<span class="w">  </span><span class="c1">#Update with your backend name</span>
-$<span class="w"> </span>osmo<span class="w"> </span>config<span class="w"> </span>update<span class="w"> </span>BACKEND<span class="w"> </span><span class="nv">$BACKEND_NAME</span><span class="w"> </span>--file<span class="w"> </span>/tmp/scheduler_settings.json
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>See <a class="reference internal" href="../advanced_config/scheduler.html#scheduler"><span class="std std-ref">Scheduler Configuration</span></a> for detailed scheduler configuration options.</p>
-</div>
-</section>
-<section id="step-5-validate-deployment">
-<h2>Step 5: Validate Deployment<a class="headerlink" href="#step-5-validate-deployment" title="Link to this heading">#</a></h2>
+<section id="step-4-validate-deployment">
+<h2>Step 4: Validate Deployment<a class="headerlink" href="#step-4-validate-deployment" title="Link to this heading">#</a></h2>
 <p>Use the OSMO CLI to validate the backend configuration</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">BACKEND_NAME</span><span class="o">=</span>default<span class="w">  </span><span class="c1"># Update with your backend name</span>
 
@@ -617,7 +594,6 @@ $<span class="w"> </span>osmo<span class="w"> </span>config<span class="w"> </sp
 <span class="w">          </span><span class="nt">&quot;scheduler_settings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">              </span><span class="nt">&quot;scheduler_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kai&quot;</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;scheduler_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;kai-scheduler&quot;</span><span class="p">,</span>
-<span class="w">              </span><span class="nt">&quot;coscheduling&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">              </span><span class="nt">&quot;scheduler_timeout&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span>
 <span class="w">          </span><span class="p">},</span>
 <span class="w">          </span><span class="nt">&quot;node_conditions&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -627,9 +603,9 @@ $<span class="w"> </span>osmo<span class="w"> </span>config<span class="w"> </sp
 <span class="w">          </span><span class="nt">&quot;last_heartbeat&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-11-15T02:35:17.957569&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;created_date&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-09-03T19:48:21.969688&quot;</span><span class="p">,</span>
 <span class="w">          </span><span class="nt">&quot;router_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;wss://osmo.example.com&quot;</span><span class="p">,</span>
-<span class="hll"><span class="w">          </span><span class="nt">&quot;online&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
-</span><span class="w">      </span><span class="p">}</span>
-<span class="w">  </span><span class="p">]</span>
+<span class="w">          </span><span class="nt">&quot;online&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<span class="hll"><span class="w">      </span><span class="p">}</span>
+</span><span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -702,8 +678,7 @@ $<span class="w"> </span>osmo<span class="w"> </span>config<span class="w"> </sp
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-create-osmo-service-token">Step 1: Create OSMO Service Token</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-create-k8s-namespaces-and-secrets">Step 2: Create K8s Namespaces and Secrets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-deploy-backend-operator">Step 3: Deploy Backend Operator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-configure-kai-scheduler">Step 4: Configure KAI Scheduler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-validate-deployment">Step 5: Validate Deployment</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-validate-deployment">Step 4: Validate Deployment</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token-expiration-error">Token Expiration Error</a></li>
 </ul>
