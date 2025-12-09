@@ -55,7 +55,7 @@ your roles.
 2. Clear your browser cache and cookies.
 3. Logout and re-login. Follow the [Login CLI](../appendix/cli/cli_login.md#cli-reference-login).
 
-1. Check if the pool is accessible in your profile using the [Profile List CLI](../appendix/cli/cli_profile.md#cli-reference-profile-list).
+1. Check if the pool is accessible in your profile using the [Profile List CLI](../appendix/cli/cli_profile.md#cli_reference_profile_list).
 
 ### How to fix OSMO exec hangs?
 
@@ -119,7 +119,7 @@ $ osmo workflow cancel --force <workflow_id>
 
 > **Note**
 >
-> To learn more about the cancel CLI, go to [cancel](../appendix/cli/cli_workflow.md#cli-reference-workflow-cancel).
+> To learn more about the cancel CLI, go to [cancel](../appendix/cli/cli_workflow.md#cli_reference_workflow_cancel).
 
 ### How to stop a hanging workflow without canceling it?
 
@@ -146,7 +146,7 @@ $ /bin/sh -c "kill -9 $( ps aux | grep '[p]ython' | head -n1 | awk '{print $2}' 
 
 ### How to determine the resource usage of a workflow?
 
-Follow the `grafana_url` for your workflow fetched using the [query](../appendix/cli/cli_workflow.md#cli-reference-workflow-query) CLI to determine the resource usage of your workflows.
+Follow the `grafana_url` for your workflow fetched using the [query](../appendix/cli/cli_workflow.md#cli_reference_workflow_query) CLI to determine the resource usage of your workflows.
 
 Alternately, you can click on the `Resource Usage` button in the UI on the detailed workflow information page.
 
@@ -158,7 +158,7 @@ Grafana dashboard displays resource usage metrics for CPU, memory, and GPU for y
 
 ### How to browse previously submitted workflows?
 
-Refer to [workflow list](../appendix/cli/cli_workflow.md#cli-reference-workflow-list) to list workflows.
+Refer to [workflow list](../appendix/cli/cli_workflow.md#cli_reference_workflow_list) to list workflows.
 
 ### How to mount datasets inside the workflow?
 
@@ -166,11 +166,11 @@ Mounting inputs inside a workflow is not supported. Contact your admin to setup 
 
 ### How to update datasets inside the workflow?
 
-Multiple tasks of a workflow or multiple workflows can operate and update the same dataset. See [Update Dataset](../appendix/cli/cli_dataset.md#cli-reference-dataset-update).
+Multiple tasks of a workflow or multiple workflows can operate and update the same dataset. See [Update Dataset](../appendix/cli/cli_dataset.md#cli_reference_dataset_update).
 
 ### How to Handle Failed Tasks?
 
-To manually rerun tasks in a workflow that have failed, see [restart](../appendix/cli/cli_workflow.md#cli-reference-workflow-restart)
+To manually rerun tasks in a workflow that have failed, see [restart](../appendix/cli/cli_workflow.md#cli_reference_workflow_restart)
 
 To have your workflow automatically reschedule and retry failed tasks, see  [Exit Actions](../workflows/specification/exit_actions.md#workflow-spec-exit-actions)
 
@@ -293,7 +293,7 @@ Here are the most common causes and how to investigate them:
    - Check the task status and events to see detailed information.
 5. **More Information**
    - Workflow and task events can provide more information about status and scheduling details.
-   - Use the [query](../appendix/cli/cli_workflow.md#cli-reference-workflow-query) command for verbose task information. This is useful for checking rescheduling actions.
+   - Use the [query](../appendix/cli/cli_workflow.md#cli_reference_workflow_query) command for verbose task information. This is useful for checking rescheduling actions.
 
 ### What is the difference between quota limit and total capacity?
 
@@ -412,7 +412,7 @@ You must have data access and the data must be in the S3 bucket. OSMO natively s
 $ osmo dataset upload sample_dataset s3://team_bucket/extracted_data/my_data.pod
 ```
 
-After the process completes, you can view the dataset as mentioned in [info](../appendix/cli/cli_dataset.md#cli-reference-dataset-info).
+After the process completes, you can view the dataset as mentioned in [info](../appendix/cli/cli_dataset.md#cli_reference_dataset_info).
 
 ### How to resume dataset operations in case of failures?
 

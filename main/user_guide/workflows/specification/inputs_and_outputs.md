@@ -127,7 +127,7 @@ types of supported output types:
   Learn more about the URI syntax at [Storage URLs](../../tutorials/data/index.md#tutorials-working-with-data-storage-urls).
 * `dataset`: Uploads the files to a dataset. Learn more about datasets at [Working with Data](../../tutorials/data/index.md#tutorials-working-with-data-datasets).
 * `update_dataset`: Creates a new dataset version with the combined files from the task’s
-  output folder and the existing dataset version. Learn more about datasets at [Update Dataset](../../appendix/cli/cli_dataset.md#cli-reference-dataset-update).
+  output folder and the existing dataset version. Learn more about datasets at [Update Dataset](../../appendix/cli/cli_dataset.md#cli_reference_dataset_update).
 
 For example:
 
@@ -182,8 +182,8 @@ On how to specify which files to be uploaded, go to [Templates and Special Token
 | name        | The name of the dataset/collection.                                                                                                                                       |
 | path        | A relative path from `{{output}}` to upload. If no path is specified, the entire output folder will be uploaded.                                                          |
 | regex       | A regex to filter the files to upload.                                                                                                                                    |
-| metadata    | A list of metadata files to apply to the dataset version. Learn more at [Dataset Metadata CLI Command](../../appendix/cli/cli_dataset.md#cli-reference-dataset-metadata). |
-| labels      | A list of labels files to apply to the dataset. Learn more at [Dataset Labels CLI Command](../../appendix/cli/cli_dataset.md#cli-reference-dataset-label).                |
+| metadata    | A list of metadata files to apply to the dataset version. Learn more at [Dataset Metadata CLI Command](../../appendix/cli/cli_dataset.md#cli_reference_dataset_metadata). |
+| labels      | A list of labels files to apply to the dataset. Learn more at [Dataset Labels CLI Command](../../appendix/cli/cli_dataset.md#cli_reference_dataset_label).                |
 
 `update_dataset` has the additional fields:
 
@@ -191,8 +191,8 @@ On how to specify which files to be uploaded, go to [Templates and Special Token
 |-------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | name        | The name of the dataset/collection.                                                                                                                                       |
 | path        | A relative path from `{{output}}` to upload. If no path is specified, the entire output folder will be uploaded.                                                          |
-| metadata    | A list of metadata files to apply to the dataset version. Learn more at [Dataset Metadata CLI Command](../../appendix/cli/cli_dataset.md#cli-reference-dataset-metadata). |
-| labels      | A list of labels files to apply to the dataset. Learn more at [Dataset Labels CLI Command](../../appendix/cli/cli_dataset.md#cli-reference-dataset-label).                |
+| metadata    | A list of metadata files to apply to the dataset version. Learn more at [Dataset Metadata CLI Command](../../appendix/cli/cli_dataset.md#cli_reference_dataset_metadata). |
+| labels      | A list of labels files to apply to the dataset. Learn more at [Dataset Labels CLI Command](../../appendix/cli/cli_dataset.md#cli_reference_dataset_label).                |
 
 > **Note**
 >

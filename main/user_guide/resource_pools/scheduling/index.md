@@ -59,7 +59,7 @@ by **(2)** submission time.
 ![image](user_guide/resource_pools/scheduling/priority_queueing_order.svg)
 
 #### SEE ALSO
-To learn how to specify priority in your workflow, see [submit](../../appendix/cli/cli_workflow.md#cli-reference-workflow-submit).
+To learn how to specify priority in your workflow, see [submit](../../appendix/cli/cli_workflow.md#cli_reference_workflow_submit).
 
 ## Quotas
 

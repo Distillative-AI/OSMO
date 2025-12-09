@@ -19,15 +19,18 @@ SPDX-License-Identifier: Apache-2.0 -->
 # osmo login
 
 ```default
-usage: osmo login [-h] [--device-endpoint DEVICE_ENDPOINT] [--method {code,password,token,dev}] [--username USERNAME]
-               [--password PASSWORD | --password-file PASSWORD_FILE] [--token TOKEN | --token-file TOKEN_FILE]
-               url
+usage: osmo login [-h] [--device-endpoint DEVICE_ENDPOINT]
+                  [--method {code,password,token,dev}] [--username USERNAME]
+                  [--password PASSWORD | --password-file PASSWORD_FILE]
+                  [--token TOKEN | --token-file TOKEN_FILE]
+                  url
 ```
 
 ## Positional Arguments
 
-`url`
-: The url of the osmo server to connect to
+* **url**: 
+
+The url of the osmo server to connect to
 
 ## Named Arguments
 

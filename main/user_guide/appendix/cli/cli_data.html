@@ -636,147 +636,164 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">osmo</span> <span class="n">data</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">{</span><span class="n">upload</span><span class="p">,</span><span class="n">download</span><span class="p">,</span><span class="nb">list</span><span class="p">,</span><span class="n">delete</span><span class="p">}</span> <span class="o">...</span>
 </pre></div>
 </div>
-<section id="positional-arguments">
-<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">command</kbd></dt><dd><p>Possible choices: upload, download, list, delete</p>
+<section id="src.cli.main_parser-create_cli_parser-positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#src.cli.main_parser-create_cli_parser-positional-arguments" title="Link to this heading">#</a></h2>
+<dl class="option-list">
+<dt><kbd>command</kbd></dt>
+<dd><p>Possible choices: upload, download, list, delete</p>
 </dd>
 </dl>
 </section>
-<section id="sub-commands">
-<h2>Sub-commands<a class="headerlink" href="#sub-commands" title="Link to this heading">#</a></h2>
-<section id="upload">
-<h3>upload<a class="headerlink" href="#upload" title="Link to this heading">#</a></h3>
+<section id="Sub-commands">
+<h2>Sub-commands<a class="headerlink" href="#Sub-commands" title="Link to this heading">#</a></h2>
+<section id="cli_reference_data_upload">
+<span id="upload"></span><h3>upload<a class="headerlink" href="#cli_reference_data_upload" title="Link to this heading">#</a></h3>
 <p>Upload data to a backend URI</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="n">upload</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">processes</span> <span class="n">PROCESSES</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">threads</span> <span class="n">THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">benchmark</span><span class="o">-</span><span class="n">out</span> <span class="n">BENCHMARK_OUT</span><span class="p">]</span>
-                     <span class="n">remote_uri</span> <span class="n">local_path</span> <span class="p">[</span><span class="n">local_path</span> <span class="o">...</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="n">upload</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">processes</span> <span class="n">PROCESSES</span><span class="p">]</span>
+                 <span class="p">[</span><span class="o">--</span><span class="n">threads</span> <span class="n">THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">benchmark</span><span class="o">-</span><span class="n">out</span> <span class="n">BENCHMARK_OUT</span><span class="p">]</span>
+                 <span class="n">remote_uri</span> <span class="n">local_path</span> <span class="p">[</span><span class="n">local_path</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="id1">
-<h4>Positional Arguments<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">remote_uri</kbd></dt><dd><p>Location where data will be uploaded to.</p>
+<section id="cli_reference_data_upload_positional_arguments">
+<h4>Positional Arguments<a class="headerlink" href="#cli_reference_data_upload_positional_arguments" title="Link to this heading">#</a></h4>
+<dl class="option-list">
+<dt id="cli_reference_data_upload_remote_uri"><kbd>remote_uri</kbd><a class="headerlink" href="#cli_reference_data_upload_remote_uri" title="Link to this argument">#</a></dt>
+<dd><p>Location where data will be uploaded to.</p>
 </dd>
-<dt><kbd class="kbd docutils literal notranslate">local_path</kbd></dt><dd><p>Path(s) where the data lies.</p>
+<dt id="cli_reference_data_upload_local_path"><kbd>local_path</kbd><a class="headerlink" href="#cli_reference_data_upload_local_path" title="Link to this argument">#</a></dt>
+<dd><p>Path(s) where the data lies.</p>
 </dd>
 </dl>
 </section>
-<section id="named-arguments">
-<h4>Named Arguments<a class="headerlink" href="#named-arguments" title="Link to this heading">#</a></h4>
+<section id="cli_reference_data_upload_named_arguments">
+<h4>Named Arguments<a class="headerlink" href="#cli_reference_data_upload_named_arguments" title="Link to this heading">#</a></h4>
 <dl class="option-list">
-<dt><kbd><span class="option">--regex</span>, <span class="option">-x</span></kbd></dt>
+<dt id="cli_reference_data_upload_regex"><kbd>--regex, -x</kbd><a class="headerlink" href="#cli_reference_data_upload_regex" title="Link to this argument">#</a></dt>
 <dd><p>Regex to filter which types of files to upload</p>
 </dd>
-<dt><kbd><span class="option">--processes</span>, <span class="option">-p</span></kbd></dt>
-<dd><p>Number of processes. Defaults to 8</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">8</span></code></p>
+<dt id="cli_reference_data_upload_processes"><kbd>--processes, -p</kbd><a class="headerlink" href="#cli_reference_data_upload_processes" title="Link to this argument">#</a></dt>
+<dd><p>Number of processes. Defaults to 4</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">4</span></code></p>
 </dd>
-<dt><kbd><span class="option">--threads</span>, <span class="option">-T</span></kbd></dt>
+<dt id="cli_reference_data_upload_threads"><kbd>--threads, -T</kbd><a class="headerlink" href="#cli_reference_data_upload_threads" title="Link to this argument">#</a></dt>
 <dd><p>Number of threads per process. Defaults to 20</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">20</span></code></p>
 </dd>
-<dt><kbd><span class="option">--benchmark-out</span>, <span class="option">-b</span></kbd></dt>
+<dt id="cli_reference_data_upload_benchmark_out"><kbd>--benchmark-out, -b</kbd><a class="headerlink" href="#cli_reference_data_upload_benchmark_out" title="Link to this argument">#</a></dt>
 <dd><p>Path to folder where benchmark data will be written to.</p>
 </dd>
 </dl>
 </section>
+<p>Ex. osmo data upload s3://bucket/ /path/to/file</p>
 </section>
-<section id="download">
-<h3>download<a class="headerlink" href="#download" title="Link to this heading">#</a></h3>
+<section id="cli_reference_data_download">
+<span id="download"></span><h3>download<a class="headerlink" href="#cli_reference_data_download" title="Link to this heading">#</a></h3>
 <p>Download a data from a backend URI</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="n">download</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">resume</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">processes</span> <span class="n">PROCESSES</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">threads</span> <span class="n">THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">benchmark</span><span class="o">-</span><span class="n">out</span> <span class="n">BENCHMARK_OUT</span><span class="p">]</span> <span class="n">remote_uri</span> <span class="n">local_path</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="n">download</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">resume</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">processes</span> <span class="n">PROCESSES</span><span class="p">]</span>
+                   <span class="p">[</span><span class="o">--</span><span class="n">threads</span> <span class="n">THREADS</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">benchmark</span><span class="o">-</span><span class="n">out</span> <span class="n">BENCHMARK_OUT</span><span class="p">]</span>
+                   <span class="n">remote_uri</span> <span class="n">local_path</span>
 </pre></div>
 </div>
-<section id="id2">
-<h4>Positional Arguments<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">remote_uri</kbd></dt><dd><p>URI where data will be downloaded from.</p>
+<section id="cli_reference_data_download_positional_arguments">
+<h4>Positional Arguments<a class="headerlink" href="#cli_reference_data_download_positional_arguments" title="Link to this heading">#</a></h4>
+<dl class="option-list">
+<dt id="cli_reference_data_download_remote_uri"><kbd>remote_uri</kbd><a class="headerlink" href="#cli_reference_data_download_remote_uri" title="Link to this argument">#</a></dt>
+<dd><p>URI where data will be downloaded from.</p>
 </dd>
-<dt><kbd class="kbd docutils literal notranslate">local_path</kbd></dt><dd><p>Path where data will be downloaded to.</p>
+<dt id="cli_reference_data_download_local_path"><kbd>local_path</kbd><a class="headerlink" href="#cli_reference_data_download_local_path" title="Link to this argument">#</a></dt>
+<dd><p>Path where data will be downloaded to.</p>
 </dd>
 </dl>
 </section>
-<section id="id3">
-<h4>Named Arguments<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<section id="cli_reference_data_download_named_arguments">
+<h4>Named Arguments<a class="headerlink" href="#cli_reference_data_download_named_arguments" title="Link to this heading">#</a></h4>
 <dl class="option-list">
-<dt><kbd><span class="option">--regex</span>, <span class="option">-x</span></kbd></dt>
+<dt id="cli_reference_data_download_regex"><kbd>--regex, -x</kbd><a class="headerlink" href="#cli_reference_data_download_regex" title="Link to this argument">#</a></dt>
 <dd><p>Regex to filter which types of files to download</p>
 </dd>
-<dt><kbd><span class="option">--resume</span>, <span class="option">-r</span></kbd></dt>
+<dt id="cli_reference_data_download_resume"><kbd>--resume, -r</kbd><a class="headerlink" href="#cli_reference_data_download_resume" title="Link to this argument">#</a></dt>
 <dd><p>Resume a download.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--processes</span>, <span class="option">-p</span></kbd></dt>
-<dd><p>Number of processes. Defaults to 8</p>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">8</span></code></p>
+<dt id="cli_reference_data_download_processes"><kbd>--processes, -p</kbd><a class="headerlink" href="#cli_reference_data_download_processes" title="Link to this argument">#</a></dt>
+<dd><p>Number of processes. Defaults to 4</p>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">4</span></code></p>
 </dd>
-<dt><kbd><span class="option">--threads</span>, <span class="option">-T</span></kbd></dt>
+<dt id="cli_reference_data_download_threads"><kbd>--threads, -T</kbd><a class="headerlink" href="#cli_reference_data_download_threads" title="Link to this argument">#</a></dt>
 <dd><p>Number of threads per process. Defaults to 20</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">20</span></code></p>
 </dd>
-<dt><kbd><span class="option">--benchmark-out</span>, <span class="option">-b</span></kbd></dt>
+<dt id="cli_reference_data_download_benchmark_out"><kbd>--benchmark-out, -b</kbd><a class="headerlink" href="#cli_reference_data_download_benchmark_out" title="Link to this argument">#</a></dt>
 <dd><p>Path to folder where benchmark data will be written to.</p>
 </dd>
 </dl>
 </section>
+<p>Ex. osmo data download s3://bucket/ /path/to/folder</p>
 </section>
-<section id="list">
-<h3>list<a class="headerlink" href="#list" title="Link to this heading">#</a></h3>
+<section id="cli_reference_data_list">
+<span id="list"></span><h3>list<a class="headerlink" href="#cli_reference_data_list" title="Link to this heading">#</a></h3>
 <p>List a data from a backend URI</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">prefix</span> <span class="n">PREFIX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">recursive</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">pager</span><span class="p">]</span> <span class="n">remote_uri</span> <span class="p">[</span><span class="n">local_path</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">prefix</span> <span class="n">PREFIX</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">recursive</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">pager</span><span class="p">]</span>
+               <span class="n">remote_uri</span> <span class="p">[</span><span class="n">local_path</span><span class="p">]</span>
 </pre></div>
 </div>
-<section id="id4">
-<h4>Positional Arguments<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">remote_uri</kbd></dt><dd><p>URI where data will be listed for.</p>
+<section id="cli_reference_data_list_positional_arguments">
+<h4>Positional Arguments<a class="headerlink" href="#cli_reference_data_list_positional_arguments" title="Link to this heading">#</a></h4>
+<dl class="option-list">
+<dt id="cli_reference_data_list_remote_uri"><kbd>remote_uri</kbd><a class="headerlink" href="#cli_reference_data_list_remote_uri" title="Link to this argument">#</a></dt>
+<dd><p>URI where data will be listed for.</p>
 </dd>
-<dt><kbd class="kbd docutils literal notranslate">local_path</kbd></dt><dd><p>Path where list data will be written to.</p>
+<dt id="cli_reference_data_list_local_path"><kbd>local_path</kbd><a class="headerlink" href="#cli_reference_data_list_local_path" title="Link to this argument">#</a></dt>
+<dd><p>Path where list data will be written to.</p>
 </dd>
 </dl>
 </section>
-<section id="id5">
-<h4>Named Arguments<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<section id="cli_reference_data_list_named_arguments">
+<h4>Named Arguments<a class="headerlink" href="#cli_reference_data_list_named_arguments" title="Link to this heading">#</a></h4>
 <dl class="option-list">
-<dt><kbd><span class="option">--regex</span>, <span class="option">-x</span></kbd></dt>
+<dt id="cli_reference_data_list_regex"><kbd>--regex, -x</kbd><a class="headerlink" href="#cli_reference_data_list_regex" title="Link to this argument">#</a></dt>
 <dd><p>Regex to filter which types of files to list</p>
 </dd>
-<dt><kbd><span class="option">--prefix</span>, <span class="option">-p</span></kbd></dt>
+<dt id="cli_reference_data_list_prefix"><kbd>--prefix, -p</kbd><a class="headerlink" href="#cli_reference_data_list_prefix" title="Link to this argument">#</a></dt>
 <dd><p>Prefix/directory to list from the remote URI.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
 </dd>
-<dt><kbd><span class="option">--recursive</span>, <span class="option">-r</span></kbd></dt>
+<dt id="cli_reference_data_list_recursive"><kbd>--recursive, -r</kbd><a class="headerlink" href="#cli_reference_data_list_recursive" title="Link to this argument">#</a></dt>
 <dd><p>List recursively.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--no-pager</span></kbd></dt>
+<dt id="cli_reference_data_list_no_pager"><kbd>--no-pager</kbd><a class="headerlink" href="#cli_reference_data_list_no_pager" title="Link to this argument">#</a></dt>
 <dd><p>Do not use a pager to display the list results, print directly to stdout.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
 </dl>
 </section>
+<p>Ex. osmo data list s3://bucket/ /path/with/file_name</p>
 </section>
-<section id="delete">
-<h3>delete<a class="headerlink" href="#delete" title="Link to this heading">#</a></h3>
+<section id="cli_reference_data_delete">
+<span id="delete"></span><h3>delete<a class="headerlink" href="#cli_reference_data_delete" title="Link to this heading">#</a></h3>
 <p>Delete a data from a backend URI</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">data</span> <span class="n">delete</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">regex</span> <span class="n">REGEX</span><span class="p">]</span> <span class="n">remote_uri</span>
 </pre></div>
 </div>
-<section id="id6">
-<h4>Positional Arguments<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">remote_uri</kbd></dt><dd><p>URI where data will be delete from.</p>
+<section id="cli_reference_data_delete_positional_arguments">
+<h4>Positional Arguments<a class="headerlink" href="#cli_reference_data_delete_positional_arguments" title="Link to this heading">#</a></h4>
+<dl class="option-list">
+<dt id="cli_reference_data_delete_remote_uri"><kbd>remote_uri</kbd><a class="headerlink" href="#cli_reference_data_delete_remote_uri" title="Link to this argument">#</a></dt>
+<dd><p>URI where data will be delete from.</p>
 </dd>
 </dl>
 </section>
-<section id="id7">
-<h4>Named Arguments<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<section id="cli_reference_data_delete_named_arguments">
+<h4>Named Arguments<a class="headerlink" href="#cli_reference_data_delete_named_arguments" title="Link to this heading">#</a></h4>
 <dl class="option-list">
-<dt><kbd><span class="option">--regex</span>, <span class="option">-x</span></kbd></dt>
+<dt id="cli_reference_data_delete_regex"><kbd>--regex, -x</kbd><a class="headerlink" href="#cli_reference_data_delete_regex" title="Link to this argument">#</a></dt>
 <dd><p>Regex to filter which types of files to delete</p>
 </dd>
 </dl>
 </section>
+<p>Ex. osmo data delete s3://bucket/</p>
 </section>
 </section>
 </section>
@@ -830,12 +847,12 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-commands">Sub-commands</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#upload">upload</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download">download</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">list</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#delete">delete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.cli.main_parser-create_cli_parser-positional-arguments">Positional Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Sub-commands">Sub-commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli_reference_data_upload">upload</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli_reference_data_download">download</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli_reference_data_list">list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli_reference_data_delete">delete</a></li>
 </ul>
 </li>
 </ul>

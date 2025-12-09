@@ -211,4 +211,4 @@ $ osmo workflow submit training.yaml --priority HIGH
 ```
 
 #### SEE ALSO
-For complete CLI reference, see [submit](../appendix/cli/cli_workflow.md#cli-reference-workflow-submit).
+For complete CLI reference, see [submit](../appendix/cli/cli_workflow.md#cli_reference_workflow_submit).

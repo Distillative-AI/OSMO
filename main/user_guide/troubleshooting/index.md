@@ -236,11 +236,11 @@ SPDX-License-Identifier: Apache-2.0 -->
 
 ## Workflow
 
-When a workflow fails, refer to [query](../appendix/cli/cli_workflow.md#cli-reference-workflow-query) to gain an overview of the workflow tasks
+When a workflow fails, refer to [query](../appendix/cli/cli_workflow.md#cli_reference_workflow_query) to gain an overview of the workflow tasks
 statuses on which pods failed as well as their failure messages. Refer to [Status Reference](../workflows/lifecycle/index.md#workflow-lifecycle-status)
 that contains more information regarding different workflow statuses.
 
-Use [logs](../appendix/cli/cli_workflow.md#cli-reference-workflow-logs) for a better insight of what happened during the workflow runtime.
+Use [logs](../appendix/cli/cli_workflow.md#cli_reference_workflow_logs) for a better insight of what happened during the workflow runtime.
 
 <a id="troubleshooting-137-error-code"></a>
 

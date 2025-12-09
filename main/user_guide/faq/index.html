@@ -650,7 +650,7 @@ your roles.</p>
 <li><p>Logout and re-login. Follow the <a class="reference internal" href="../appendix/cli/cli_login.html#cli-reference-login"><span class="std std-ref">Login CLI</span></a>.</p></li>
 </ol>
 <ol class="arabic simple" start="3">
-<li><p>Check if the pool is accessible in your profile using the <a class="reference internal" href="../appendix/cli/cli_profile.html#cli-reference-profile-list"><span class="std std-ref">Profile List CLI</span></a>.</p></li>
+<li><p>Check if the pool is accessible in your profile using the <a class="reference internal" href="../appendix/cli/cli_profile.html#cli_reference_profile_list"><span class="std std-ref">Profile List CLI</span></a>.</p></li>
 </ol>
 </section>
 <section id="how-to-fix-osmo-exec-hangs">
@@ -706,7 +706,7 @@ Forcing a <em>cancel</em> frees the resources instantaneously.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To learn more about the cancel CLI, go to <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli-reference-workflow-cancel"><span class="std std-ref">cancel</span></a>.</p>
+<p>To learn more about the cancel CLI, go to <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli_reference_workflow_cancel"><span class="std std-ref">cancel</span></a>.</p>
 </div>
 </section>
 <section id="how-to-stop-a-hanging-workflow-without-canceling-it">
@@ -727,7 +727,7 @@ you can use the <cite>osmo exec</cite> command. For example:</p>
 </section>
 <section id="how-to-determine-the-resource-usage-of-a-workflow">
 <span id="faq-workflow-resource-usage"></span><h3>How to determine the resource usage of a workflow?<a class="headerlink" href="#how-to-determine-the-resource-usage-of-a-workflow" title="Link to this heading">#</a></h3>
-<p>Follow the <code class="docutils literal notranslate"><span class="pre">grafana_url</span></code> for your workflow fetched using the <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli-reference-workflow-query"><span class="std std-ref">query</span></a> CLI to determine the resource usage of your workflows.</p>
+<p>Follow the <code class="docutils literal notranslate"><span class="pre">grafana_url</span></code> for your workflow fetched using the <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli_reference_workflow_query"><span class="std std-ref">query</span></a> CLI to determine the resource usage of your workflows.</p>
 <p>Alternately, you can click on the <code class="docutils literal notranslate"><span class="pre">Resource</span> <span class="pre">Usage</span></code> button in the UI on the detailed workflow information page.</p>
 <a class="reference internal image-reference" href="../../_images/workflow_ui_resource_usage.png"><img alt="Alternative text" class="align-center" src="../../_images/workflow_ui_resource_usage.png" style="width: 1200px;" /></a>
 <p>Grafana dashboard displays resource usage metrics for CPU, memory, and GPU for your workflow.</p>
@@ -735,7 +735,7 @@ you can use the <cite>osmo exec</cite> command. For example:</p>
 </section>
 <section id="how-to-browse-previously-submitted-workflows">
 <h3>How to browse previously submitted workflows?<a class="headerlink" href="#how-to-browse-previously-submitted-workflows" title="Link to this heading">#</a></h3>
-<p>Refer to <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli-reference-workflow-list"><span class="std std-ref">workflow list</span></a> to list workflows.</p>
+<p>Refer to <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli_reference_workflow_list"><span class="std std-ref">workflow list</span></a> to list workflows.</p>
 </section>
 <section id="how-to-mount-datasets-inside-the-workflow">
 <h3>How to mount datasets inside the workflow?<a class="headerlink" href="#how-to-mount-datasets-inside-the-workflow" title="Link to this heading">#</a></h3>
@@ -743,11 +743,11 @@ you can use the <cite>osmo exec</cite> command. For example:</p>
 </section>
 <section id="how-to-update-datasets-inside-the-workflow">
 <h3>How to update datasets inside the workflow?<a class="headerlink" href="#how-to-update-datasets-inside-the-workflow" title="Link to this heading">#</a></h3>
-<p>Multiple tasks of a workflow or multiple workflows can operate and update the same dataset. See <a class="reference internal" href="../appendix/cli/cli_dataset.html#cli-reference-dataset-update"><span class="std std-ref">Update Dataset</span></a>.</p>
+<p>Multiple tasks of a workflow or multiple workflows can operate and update the same dataset. See <a class="reference internal" href="../appendix/cli/cli_dataset.html#cli_reference_dataset_update"><span class="std std-ref">Update Dataset</span></a>.</p>
 </section>
 <section id="how-to-handle-failed-tasks">
 <h3>How to Handle Failed Tasks?<a class="headerlink" href="#how-to-handle-failed-tasks" title="Link to this heading">#</a></h3>
-<p>To manually rerun tasks in a workflow that have failed, see <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli-reference-workflow-restart"><span class="std std-ref">restart</span></a></p>
+<p>To manually rerun tasks in a workflow that have failed, see <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli_reference_workflow_restart"><span class="std std-ref">restart</span></a></p>
 <p>To have your workflow automatically reschedule and retry failed tasks, see  <a class="reference internal" href="../workflows/specification/exit_actions.html#workflow-spec-exit-actions"><span class="std std-ref">Exit Actions</span></a></p>
 <p>For a practical example of rescheduling training workflows for backend errors, see <a class="reference external" href="https://github.com/NVIDIA/OSMO/tree/main/workflows/dnn_training/torchrun_reschedule" rel="noreferrer" target="_blank">here <svg version="1.1" width="1.0em" height="1.0em" viewBox="0 0 16 16" aria-hidden="true" style="display: inline-block; vertical-align: middle; fill: currentColor;"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg></a>.</p>
 </section>
@@ -871,7 +871,7 @@ quota limit (96 + 10 = 106), causing the workflow to be pending.</p>
 <li><p><strong>More Information</strong></p>
 <ul class="simple">
 <li><p>Workflow and task events can provide more information about status and scheduling details.</p></li>
-<li><p>Use the <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli-reference-workflow-query"><span class="std std-ref">query</span></a> command for verbose task information. This is useful for checking rescheduling actions.</p></li>
+<li><p>Use the <a class="reference internal" href="../appendix/cli/cli_workflow.html#cli_reference_workflow_query"><span class="std std-ref">query</span></a> command for verbose task information. This is useful for checking rescheduling actions.</p></li>
 </ul>
 </li>
 </ol>
@@ -964,7 +964,7 @@ osmo<span class="w"> </span>credential<span class="w"> </span><span class="nb">s
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>osmo<span class="w"> </span>dataset<span class="w"> </span>upload<span class="w"> </span>sample_dataset<span class="w"> </span>s3://team_bucket/extracted_data/my_data.pod
 </pre></div>
 </div>
-<p>After the process completes, you can view the dataset as mentioned in <a class="reference internal" href="../appendix/cli/cli_dataset.html#cli-reference-dataset-info"><span class="std std-ref">info</span></a>.</p>
+<p>After the process completes, you can view the dataset as mentioned in <a class="reference internal" href="../appendix/cli/cli_dataset.html#cli_reference_dataset_info"><span class="std std-ref">info</span></a>.</p>
 </section>
 <section id="how-to-resume-dataset-operations-in-case-of-failures">
 <h3>How to resume dataset operations in case of failures?<a class="headerlink" href="#how-to-resume-dataset-operations-in-case-of-failures" title="Link to this heading">#</a></h3>

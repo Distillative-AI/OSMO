@@ -24,12 +24,11 @@ usage: osmo resource [-h] {list,info} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: list, info
+* **command**: 
+
+Possible choices: list, info
 
 ## Sub-commands
-
-<a id="cli-reference-resource-list"></a>
 
 ### list
 
@@ -47,12 +46,14 @@ Free           | Shows available resources as a single number
 This applies to all allocatable resources: CPU, memory, storage, and GPU.
 
 ```default
-osmo resource list [-h] [--pool POOL [POOL ...]] [--platform PLATFORM [PLATFORM ...]] [--all] [--format-type {json,text}] [--mode {free,used}]
+osmo resource list [-h] [--pool POOL [POOL ...]]
+                   [--platform PLATFORM [PLATFORM ...]] [--all]
+                   [--format-type {json,text}] [--mode {free,used}]
 ```
 
 #### Named Arguments
 
-* **--pool-p**: 
+* **--pool, -p**: 
 
 Display resources for specified pool.
 
@@ -62,27 +63,25 @@ Default: `[]`
 Display resources for specified platform.
 
 Default: `[]`
-* **--all-a**: 
+* **--all, -a**: 
 
 Show all resources from all pools.
 
 Default: `False`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
-* **--mode-m**: 
+* **--mode, -m**: 
 
 Possible choices: free, used
 
 Show free or used resources (Default used).
 
 Default: `'used'`
-
-<a id="cli-reference-resource-info"></a>
 
 ### info
 
@@ -94,14 +93,15 @@ osmo resource info [-h] [--pool POOL] [--platform PLATFORM] node_name
 
 #### Positional Arguments
 
-`node_name`
-: Name of node.
+* **node_name**: 
+
+Name of node.
 
 #### Named Arguments
 
-* **--pool-p**: 
+* **--pool, -p**: 
 
 Specify the pool to see specific allocatable and configurations.
-* **--platform-p l**: 
+* **--platform, -pl**: 
 
 Specify the platform to see specific allocatable and configurations.

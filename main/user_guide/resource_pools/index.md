@@ -63,9 +63,9 @@ Resource Types
 | SHARED     | The resource is shared with another pool.   |
 | RESERVED   | The resource is only available to the pool. |
 
-To view the pools, you can use [Pool List](../appendix/cli/cli_pool.md#cli-reference-pool-list).
+To view the pools, you can use [Pool List](../appendix/cli/cli_pool.md#cli_reference_pool_list).
 
-To view the available resources in a pool, you can use [Resource List](../appendix/cli/cli_resource.md#cli-reference-resource-list).
+To view the available resources in a pool, you can use [Resource List](../appendix/cli/cli_resource.md#cli_reference_resource_list).
 
 <a id="concepts-platforms"></a>
 
@@ -74,7 +74,7 @@ To view the available resources in a pool, you can use [Resource List](../append
 A `platform` is a group of resources in a pool and denotes a specific type of hardware.
 
 Resources are already assigned to a platform by the administrator. You can view more information
-about the resource and its access configurations using [Resource Info](../appendix/cli/cli_resource.md#cli-reference-resource-info).
+about the resource and its access configurations using [Resource Info](../appendix/cli/cli_resource.md#cli_reference_resource_info).
 
 Platform Access Configurations
 

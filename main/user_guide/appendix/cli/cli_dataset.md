@@ -19,51 +19,55 @@ SPDX-License-Identifier: Apache-2.0 -->
 # osmo dataset
 
 ```default
-usage: osmo dataset [-h] {info,upload,delete,download,update,recollect,list,tag,label,metadata,rename,query,collect,inspect,checksum,migrate} ...
+usage: osmo dataset [-h]
+                    {info,upload,delete,download,update,recollect,list,tag,label,metadata,rename,query,collect,inspect,checksum,migrate}
+                    ...
 ```
 
 ## Positional Arguments
 
-`command`
-: Possible choices: info, upload, delete, download, update, recollect, list, tag, label, metadata, rename, query, collect, inspect, checksum, migrate
+* **command**: 
+
+Possible choices: info, upload, delete, download, update, recollect, list, tag, label, metadata, rename, query, collect, inspect, checksum, migrate
 
 ## Sub-commands
-
-<a id="cli-reference-dataset-info"></a>
 
 ### info
 
 Provide details of the dataset/collection
 
 ```default
-osmo dataset info [-h] [--all] [--count COUNT] [--order {asc,desc}] [--format-type {json,text}] name
+osmo dataset info [-h] [--all] [--count COUNT] [--order {asc,desc}]
+                  [--format-type {json,text}]
+                  name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket with [bucket/]DS.
+* **name**: 
+
+Dataset name. Specify bucket with [bucket/]DS.
 
 #### Named Arguments
 
-* **--all-a**: 
+* **--all, -a**: 
 
 Display all versions in any state.
 
 Default: `False`
-* **--count-c**: 
+* **--count, -c**: 
 
 For Datasets. Display the given number of versions. Default 100.
 
 Default: `100`
-* **--order-o**: 
+* **--order, -o**: 
 
 Possible choices: asc, desc
 
 For Datasets. Display in the given order based on date created
 
 Default: `'asc'`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -71,65 +75,70 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
+Ex. osmo dataset info DS1 –format-type json
+
 ### upload
 
 Upload a new Dataset/Collection
 
 ```default
-osmo dataset upload [-h] [--desc DESCRIPTION] [--metadata METADATA [METADATA ...]] [--labels LABELS [LABELS ...]] [--regex REGEX] [--resume]
-                        [--processes PROCESSES] [--threads THREADS] [--benchmark-out BENCHMARK_OUT]
-                        name path [path ...]
+osmo dataset upload [-h] [--desc DESCRIPTION]
+                    [--metadata METADATA [METADATA ...]]
+                    [--labels LABELS [LABELS ...]] [--regex REGEX] [--resume]
+                    [--processes PROCESSES] [--threads THREADS]
+                    [--benchmark-out BENCHMARK_OUT]
+                    name path [path ...]
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag with [bucket/]DS[:tag].If you want to continue an upload, then the most recent PENDING version is chosen
+* **name**: 
 
-`path`
-: Path where the dataset lies.
+Dataset name. Specify bucket and tag with [bucket/]DS[:tag].If you want to continue an upload, then the most recent PENDING version is chosen
+* **path**: 
+
+Path where the dataset lies.
 
 #### Named Arguments
 
-* **--desc-d**: 
+* **--desc, -d**: 
 
 Description of dataset.
 
 Default: `''`
-* **--metadata-m**: 
+* **--metadata, -m**: 
 
 Yaml files of metadata to assign to dataset version
 
 Default: `[]`
-* **--labels-l**: 
+* **--labels, -l**: 
 
 Yaml files of labels to assign to dataset
 
 Default: `[]`
-* **--regex-x**: 
+* **--regex, -x**: 
 
 Regex to filter which types of files to upload
-* **--resume-r**: 
+* **--resume, -r**: 
 
 Resume a canceled/failed upload. To resume, there must be atag.
 
 Default: `False`
-* **--start-only**: 
+* **--processes, -p**: 
 
-Default: `False`
-* **--processes-p**: 
+Number of processes. Defaults to 4
 
-Number of processes. Defaults to 8
-
-Default: `8`
-* **--threads-T**: 
+Default: `4`
+* **--threads, -T**: 
 
 Number of threads per process. Defaults to 20
 
 Default: `20`
-* **--benchmark-out-b**: 
+* **--benchmark-out, -b**: 
 
 Path to folder where benchmark data will be written to.
+
+Ex. osmo dataset upload DS1:latest /path/to/file –desc “My description”
 
 ### delete
 
@@ -141,22 +150,23 @@ osmo dataset delete [-h] [--all] [--force] [--format-type {json,text}] name
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--all-a**: 
+* **--all, -a**: 
 
 Deletes all versions.
 
 Default: `False`
-* **--force-f**: 
+* **--force, -f**: 
 
 Deletes without confirmation.
 
 Default: `False`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -164,79 +174,88 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
+Ex. osmo dataset delete DS1:latest –force –format-type json
+
 ### download
 
 Download the dataset
 
 ```default
-osmo dataset download [-h] [--regex REGEX] [--resume] [--processes PROCESSES] [--threads THREADS] [--benchmark-out BENCHMARK_OUT] name path
+osmo dataset download [-h] [--regex REGEX] [--resume] [--processes PROCESSES]
+                      [--threads THREADS] [--benchmark-out BENCHMARK_OUT]
+                      name path
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
 
-`path`
-: Location where the dataset is downloaded to.
+Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **path**: 
+
+Location where the dataset is downloaded to.
 
 #### Named Arguments
 
-* **--regex-x**: 
+* **--regex, -x**: 
 
 Regex to filter which types of files to download
-* **--resume-r**: 
+* **--resume, -r**: 
 
 Resume a canceled/failed download.
 
 Default: `False`
-* **--processes-p**: 
+* **--processes, -p**: 
 
-Number of processes. Defaults to 8
+Number of processes. Defaults to 4
 
-Default: `8`
-* **--threads-T**: 
+Default: `4`
+* **--threads, -T**: 
 
 Number of threads per process. Defaults to 20
 
 Default: `20`
-* **--benchmark-out-b**: 
+* **--benchmark-out, -b**: 
 
 Path to folder where benchmark data will be written to.
 
-<a id="cli-reference-dataset-update"></a>
+Ex. osmo dataset download DS1:latest /path/to/folder
 
 ### update
 
 Creates a new dataset version from an existing version by adding or removing files.
 
 ```default
-osmo dataset update [-h] [--add ADD [ADD ...]] [--remove REMOVE] [--metadata METADATA [METADATA ...]] [--labels LABELS [LABELS ...]] [--resume RESUME]
-                        [--processes PROCESSES] [--threads THREADS] [--benchmark-out BENCHMARK_OUT]
-                        name
+osmo dataset update [-h] [--add ADD [ADD ...]] [--remove REMOVE]
+                    [--metadata METADATA [METADATA ...]]
+                    [--labels LABELS [LABELS ...]] [--resume RESUME]
+                    [--processes PROCESSES] [--threads THREADS]
+                    [--benchmark-out BENCHMARK_OUT]
+                    name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--add-a**: 
+* **--add, -a**: 
 
 Local paths/Remote URIs to append to the dataset. To specify path in the dataset where the files should be stored, use “:” to delineate local/path:remote/path. Files in the local path will be stored with the prefix of the remote path. If the path contains “:”, use “:” in the path.
 
 Default: `[]`
-* **--remove-r**: 
+* **--remove, -r**: 
 
 Regex to filter which types of files to remove.
-* **--metadata-m**: 
+* **--metadata, -m**: 
 
 Yaml files of metadata to assign to the newly created dataset version
 
 Default: `[]`
-* **--labels-l**: 
+* **--labels, -l**: 
 
 Yaml files of labels to assign to the dataset
 
@@ -244,93 +263,99 @@ Default: `[]`
 * **--resume**: 
 
 Resume a canceled/failed update. To resume, specify the PENDING version to continue.
-* **--start-only**: 
+* **--processes, -p**: 
 
-Default: `False`
-* **--processes-p**: 
+Number of processes. Defaults to 4
 
-Number of processes. Defaults to 8
-
-Default: `8`
-* **--threads-T**: 
+Default: `4`
+* **--threads, -T**: 
 
 Number of threads per process. Defaults to 20
 
 Default: `20`
-* **--benchmark-out-b**: 
+* **--benchmark-out, -b**: 
 
 Path to folder where benchmark data will be written to.
+
+Ex. osmo dataset update DS1 –add relative/path:remote/path /other/local/path s3://path:remote/path
+Ex. osmo dataset update DS1 –remove “.\*.(yaml|json)$”
 
 ### recollect
 
 Add or remove datasets from a collection.
 
 ```default
-osmo dataset recollect [-h] [--add ADD [ADD ...]] [--remove REMOVE [REMOVE ...]] name
+osmo dataset recollect [-h] [--add ADD [ADD ...]]
+                       [--remove REMOVE [REMOVE ...]]
+                       name
 ```
 
 #### Positional Arguments
 
-`name`
-: Collection name. Specify bucket with [bucket/]Collection.
+* **name**: 
+
+Collection name. Specify bucket with [bucket/]Collection.
 
 #### Named Arguments
 
-* **--add-a**: 
+* **--add, -a**: 
 
 Datasets to add to collection.
 
 Default: `[]`
-* **--remove-r**: 
+* **--remove, -r**: 
 
 Datasets to remove from collection. The remove operation happens before the add.
 
 Default: `[]`
+
+Ex. osmo dataset recollect C1 –remove DS1 –add DS2:4
 
 ### list
 
 List all Datasets/Collections uploaded by the user
 
 ```default
-osmo dataset list [-h] [--name NAME] [--user USER [USER ...]] [--bucket BUCKET [BUCKET ...]] [--all-users] [--count COUNT] [--order {asc,desc}]
-                      [--format-type {json,text}]
+osmo dataset list [-h] [--name NAME] [--user USER [USER ...]]
+                  [--bucket BUCKET [BUCKET ...]] [--all-users] [--count COUNT]
+                  [--order {asc,desc}] [--format-type {json,text}]
 ```
 
 #### Named Arguments
 
-* **--name-n**: 
+* **--name, -n**: 
 
 Display datasets that have the given substring in their name
 
 Default: `''`
-* **--user-u**: 
+* **--user, -u**: 
 
 Display all datasets where the user has uploaded to.
 
 Default: `[]`
-* **--bucket-b**: 
+* **--bucket, -b**: 
 
 Display all datasets from the given buckets.
 
 Default: `[]`
-* **--all-users-a**: 
+* **--all-users, -a**: 
 
 Display all datasets with no filtering on users
 
 Default: `False`
-* **--count-c**: 
+* **--count, -c**: 
 
 Display the given number of datasets. Default 20. Max 1000.
 
 Default: `20`
-* **--order-o**: 
+* **--order, -o**: 
 
 Possible choices: asc, desc
 
 Display in the given order. asc means latest at the bottom. desc means latest at the top
 
 Default: `'asc'`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -338,67 +363,72 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
-<a id="cli-reference-dataset-tag"></a>
+Ex. osmo dataset list –all-users or osmo dataset list –user abc xyz
 
 ### tag
 
 Update Dataset Version tags
 
 ```default
-osmo dataset tag [-h] [--set SET [SET ...]] [--delete DELETE [DELETE ...]] name
+osmo dataset tag [-h] [--set SET [SET ...]] [--delete DELETE [DELETE ...]]
+                 name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name to update. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name to update. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--set-s**: 
+* **--set, -s**: 
 
 Set tag to dataset version.
 
 Default: `[]`
-* **--delete-d**: 
+* **--delete, -d**: 
 
 Delete tag from dataset version.
 
 Default: `[]`
 
-<a id="cli-reference-dataset-label"></a>
+Ex. osmo dataset tag DS1 –set tag1 –delete tag2
 
 ### label
 
 Update Dataset labels.
 
 ```default
-osmo dataset label [-h] [--file] [--set SET [SET ...]] [--delete DELETE [DELETE ...]] [--format-type {json,text}] name
+osmo dataset label [-h] [--file] [--set SET [SET ...]]
+                   [--delete DELETE [DELETE ...]] [--format-type {json,text}]
+                   name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name to update. Specify bucket with [bucket/][DS].
+* **name**: 
+
+Dataset name to update. Specify bucket with [bucket/][DS].
 
 #### Named Arguments
 
-* **--file-f**: 
+* **--file, -f**: 
 
 If enabled, the inputs to set and delete must be files.
 
 Default: `False`
-* **--set-s**: 
+* **--set, -s**: 
 
 Set label for dataset in the form “<key>:<type>:<value>” where type is string or numericor the file-path
 
 Default: `[]`
-* **--delete-d**: 
+* **--delete, -d**: 
 
 Delete labels from dataset in the form “<key>”or the file-path
 
 Default: `[]`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -406,45 +436,51 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
-<a id="cli-reference-dataset-metadata"></a>
+Ex. osmo dataset label DS1 –set key1:string:value1 –delete key2
 
 ### metadata
 
 Update Dataset Version metadata. A tag/version is required.
 
 ```default
-osmo dataset metadata [-h] [--file] [--set SET [SET ...]] [--delete DELETE [DELETE ...]] [--format-type {json,text}] name
+osmo dataset metadata [-h] [--file] [--set SET [SET ...]]
+                      [--delete DELETE [DELETE ...]]
+                      [--format-type {json,text}]
+                      name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name to update. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name to update. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--file-f**: 
+* **--file, -f**: 
 
 If enabled, the inputs to set and delete must be files.
 
 Default: `False`
-* **--set-s**: 
+* **--set, -s**: 
 
 Set metadata from dataset in the form “<key>:<type>:<value>” where type is string or numericor the file-path
 
 Default: `[]`
-* **--delete-d**: 
+* **--delete, -d**: 
 
 Delete metadata from dataset in the form “<key>”or the file-path
 
 Default: `[]`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
+
+Ex. osmo dataset metadata DS1:latest –set key1:string:value1 –delete key2
 
 ### rename
 
@@ -456,11 +492,14 @@ osmo dataset rename [-h] original_name new_name
 
 #### Positional Arguments
 
-`original_name`
-: Old dataset/collection name. Specify bucket with [bucket/][DS].
+* **original_name**: 
 
-`new_name`
-: New dataset/collection name.
+Old dataset/collection name. Specify bucket with [bucket/][DS].
+* **new_name**: 
+
+New dataset/collection name.
+
+Ex. osmo dataset rename original_name new_name
 
 ### query
 
@@ -472,15 +511,16 @@ osmo dataset query [-h] [--bucket BUCKET] [--format-type {json,text}] file
 
 #### Positional Arguments
 
-`file`
-: The Query file to submit
+* **file**: 
+
+The Query file to submit
 
 #### Named Arguments
 
-* **--bucket-b**: 
+* **--bucket, -b**: 
 
 bucket to query.
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -488,7 +528,7 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
-<a id="cli-reference-dataset-collect"></a>
+Ex. osmo dataset query file.yaml
 
 ### collect
 
@@ -500,44 +540,50 @@ osmo dataset collect [-h] name datasets [datasets ...]
 
 #### Positional Arguments
 
-`name`
-: Collection name. Specify bucket and with [bucket/][C]. All datasets and collections added to this collection are based off of this bucket
+* **name**: 
 
-`datasets`
-: Each Dataset to add to collection. To create a collection from another collection, add the collection name.
+Collection name. Specify bucket and with [bucket/][C]. All datasets and collections added to this collection are based off of this bucket
+* **datasets**: 
 
-<a id="cli-reference-dataset-inspect"></a>
+Each Dataset to add to collection. To create a collection from another collection, add the collection name.
+
+Ex. osmo dataset collect CName C1 DS1 DS2 DS3:latest
 
 ### inspect
 
 Display Dataset Directory
 
 ```default
-osmo dataset inspect [-h] [--format-type {text,tree,json}] [--regex REGEX] [--count COUNT] name
+osmo dataset inspect [-h] [--format-type {text,tree,json}] [--regex REGEX]
+                     [--count COUNT]
+                     name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: text, tree, json
 
 Type text is that files are just printed out. Type tree displays a better representation of the directory structure. Type json prints out the list of json objects with both URI and URL links.
 
 Default: `'text'`
-* **--regex-x**: 
+* **--regex, -x**: 
 
 Regex to filter which types of files to inspect
-* **--count-c**: 
+* **--count, -c**: 
 
 Number of files to print. Default 1,000.
 
 Default: `1000`
+
+Ex. osmo dataset inspect DS1:latest –format-type json
 
 ### checksum
 
@@ -549,34 +595,42 @@ osmo dataset checksum [-h] path [path ...]
 
 #### Positional Arguments
 
-`path`
-: Paths where the folder lies.
+* **path**: 
+
+Paths where the folder lies.
+
+Ex. osmo dataset checksum /path/to/folder
 
 ### migrate
 
 Migrate a legacy (non-manifest based) dataset to a new manifest based dataset.
 
 ```default
-osmo dataset migrate [-h] [--processes PROCESSES] [--threads THREADS] [--benchmark-out BENCHMARK_OUT] name
+osmo dataset migrate [-h] [--processes PROCESSES] [--threads THREADS]
+                     [--benchmark-out BENCHMARK_OUT]
+                     name
 ```
 
 #### Positional Arguments
 
-`name`
-: Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
+* **name**: 
+
+Dataset name. Specify bucket and tag/version with [bucket/]DS[:tag/version].
 
 #### Named Arguments
 
-* **--processes-p**: 
+* **--processes, -p**: 
 
-Number of processes. Defaults to 8
+Number of processes. Defaults to 4
 
-Default: `8`
-* **--threads-T**: 
+Default: `4`
+* **--threads, -T**: 
 
 Number of threads per process. Defaults to 20
 
 Default: `20`
-* **--benchmark-out-b**: 
+* **--benchmark-out, -b**: 
 
 Path to folder where benchmark data will be written to.
+
+Ex. osmo dataset migrate DS1:latest

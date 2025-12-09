@@ -636,88 +636,94 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">osmo</span> <span class="n">task</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">{</span><span class="nb">list</span><span class="p">}</span> <span class="o">...</span>
 </pre></div>
 </div>
-<section id="positional-arguments">
-<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">command</kbd></dt><dd><p>Possible choices: list</p>
+<section id="src.cli.main_parser-create_cli_parser-positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#src.cli.main_parser-create_cli_parser-positional-arguments" title="Link to this heading">#</a></h2>
+<dl class="option-list">
+<dt><kbd>command</kbd></dt>
+<dd><p>Possible choices: list</p>
 </dd>
 </dl>
 </section>
-<section id="sub-commands">
-<h2>Sub-commands<a class="headerlink" href="#sub-commands" title="Link to this heading">#</a></h2>
-<section id="list">
-<span id="cli-reference-task-list"></span><h3>list<a class="headerlink" href="#list" title="Link to this heading">#</a></h3>
+<section id="Sub-commands">
+<h2>Sub-commands<a class="headerlink" href="#Sub-commands" title="Link to this heading">#</a></h2>
+<section id="cli_reference_task_list">
+<span id="list"></span><h3>list<a class="headerlink" href="#cli_reference_task_list" title="Link to this heading">#</a></h3>
 <p>List tasks with different filters.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">task</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">status</span> <span class="n">STATUS</span> <span class="p">[</span><span class="n">STATUS</span> <span class="o">...</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">workflow</span><span class="o">-</span><span class="nb">id</span> <span class="n">WORKFLOW_ID</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">user</span> <span class="n">USER</span> <span class="p">[</span><span class="n">USER</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">users</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">pool</span> <span class="n">POOL</span> <span class="p">[</span><span class="n">POOL</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="o">--</span><span class="n">node</span>
-                   <span class="n">NODE</span> <span class="p">[</span><span class="n">NODE</span> <span class="o">...</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">started</span><span class="o">-</span><span class="n">after</span> <span class="n">STARTED_AFTER</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">started</span><span class="o">-</span><span class="n">before</span> <span class="n">STARTED_BEFORE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">count</span> <span class="n">COUNT</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">offset</span> <span class="n">OFFSET</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">order</span> <span class="p">{</span><span class="n">asc</span><span class="p">,</span><span class="n">desc</span><span class="p">}]</span>
-                   <span class="p">[</span><span class="o">--</span><span class="n">verbose</span> <span class="o">|</span> <span class="o">--</span><span class="n">summary</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">aggregate</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">workflow</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">priority</span> <span class="p">{</span><span class="n">HIGH</span><span class="p">,</span><span class="n">NORMAL</span><span class="p">,</span><span class="n">LOW</span><span class="p">}</span> <span class="p">[{</span><span class="n">HIGH</span><span class="p">,</span><span class="n">NORMAL</span><span class="p">,</span><span class="n">LOW</span><span class="p">}</span> <span class="o">...</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="nb">format</span><span class="o">-</span><span class="nb">type</span> <span class="p">{</span><span class="n">json</span><span class="p">,</span><span class="n">text</span><span class="p">}]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">osmo</span> <span class="n">task</span> <span class="nb">list</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">status</span> <span class="n">STATUS</span> <span class="p">[</span><span class="n">STATUS</span> <span class="o">...</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">workflow</span><span class="o">-</span><span class="nb">id</span> <span class="n">WORKFLOW_ID</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">user</span> <span class="n">USER</span> <span class="p">[</span><span class="n">USER</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">users</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">pool</span> <span class="n">POOL</span> <span class="p">[</span><span class="n">POOL</span> <span class="o">...</span><span class="p">]</span>
+               <span class="o">|</span> <span class="o">--</span><span class="n">node</span> <span class="n">NODE</span> <span class="p">[</span><span class="n">NODE</span> <span class="o">...</span><span class="p">]]</span> <span class="p">[</span><span class="o">--</span><span class="n">started</span><span class="o">-</span><span class="n">after</span> <span class="n">STARTED_AFTER</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">started</span><span class="o">-</span><span class="n">before</span> <span class="n">STARTED_BEFORE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">count</span> <span class="n">COUNT</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">offset</span> <span class="n">OFFSET</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">order</span> <span class="p">{</span><span class="n">asc</span><span class="p">,</span><span class="n">desc</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">verbose</span> <span class="o">|</span> <span class="o">--</span><span class="n">summary</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">aggregate</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">workflow</span><span class="p">]</span>
+               <span class="p">[</span><span class="o">--</span><span class="n">priority</span> <span class="p">{</span><span class="n">HIGH</span><span class="p">,</span><span class="n">NORMAL</span><span class="p">,</span><span class="n">LOW</span><span class="p">}</span> <span class="p">[{</span><span class="n">HIGH</span><span class="p">,</span><span class="n">NORMAL</span><span class="p">,</span><span class="n">LOW</span><span class="p">}</span> <span class="o">...</span><span class="p">]]</span>
+               <span class="p">[</span><span class="o">--</span><span class="nb">format</span><span class="o">-</span><span class="nb">type</span> <span class="p">{</span><span class="n">json</span><span class="p">,</span><span class="n">text</span><span class="p">}]</span>
 </pre></div>
 </div>
-<section id="named-arguments">
-<h4>Named Arguments<a class="headerlink" href="#named-arguments" title="Link to this heading">#</a></h4>
+<section id="cli_reference_task_list_named_arguments">
+<h4>Named Arguments<a class="headerlink" href="#cli_reference_task_list_named_arguments" title="Link to this heading">#</a></h4>
 <dl class="option-list">
-<dt><kbd><span class="option">--status</span>, <span class="option">-s</span></kbd></dt>
+<dt id="cli_reference_task_list_status"><kbd>--status, -s</kbd><a class="headerlink" href="#cli_reference_task_list_status" title="Link to this argument">#</a></dt>
 <dd><p>Possible choices: WAITING, PROCESSING, SCHEDULING, INITIALIZING, RUNNING, FAILED, COMPLETED, FAILED_EXEC_TIMEOUT, FAILED_START_ERROR, FAILED_START_TIMEOUT, FAILED_SERVER_ERROR, FAILED_BACKEND_ERROR, FAILED_QUEUE_TIMEOUT, FAILED_IMAGE_PULL, FAILED_UPSTREAM, FAILED_EVICTED, FAILED_PREEMPTED, FAILED_CANCELED</p>
 <p>Display all tasks with the given status(es). Users can pass multiple values to this flag. Defaults to PROCESSING, SCHEDULING, INITIALIZING and RUNNING. Acceptable values: WAITING, PROCESSING, SCHEDULING, INITIALIZING, RUNNING, FAILED, COMPLETED, FAILED_EXEC_TIMEOUT, FAILED_START_ERROR, FAILED_START_TIMEOUT, FAILED_SERVER_ERROR, FAILED_BACKEND_ERROR, FAILED_QUEUE_TIMEOUT, FAILED_IMAGE_PULL, FAILED_UPSTREAM, FAILED_EVICTED, FAILED_PREEMPTED, FAILED_CANCELED.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">['PROCESSING',</span> <span class="pre">'SCHEDULING',</span> <span class="pre">'INITIALIZING',</span> <span class="pre">'RUNNING']</span></code></p>
 </dd>
-<dt><kbd><span class="option">--workflow-id</span>, <span class="option">-w</span></kbd></dt>
+<dt id="cli_reference_task_list_workflow_id"><kbd>--workflow-id, -w</kbd><a class="headerlink" href="#cli_reference_task_list_workflow_id" title="Link to this argument">#</a></dt>
 <dd><p>Display workflows which contains the string.</p>
 </dd>
-<dt><kbd><span class="option">--user</span>, <span class="option">-u</span></kbd></dt>
+<dt id="cli_reference_task_list_user"><kbd>--user, -u</kbd><a class="headerlink" href="#cli_reference_task_list_user" title="Link to this argument">#</a></dt>
 <dd><p>Display all tasks by this user. Users can pass multiple values to this flag.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code></p>
 </dd>
-<dt><kbd><span class="option">--all-users</span>, <span class="option">-a</span></kbd></dt>
+<dt id="cli_reference_task_list_all_users"><kbd>--all-users, -a</kbd><a class="headerlink" href="#cli_reference_task_list_all_users" title="Link to this argument">#</a></dt>
 <dd><p>Display all tasks with no filtering on users.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--pool</span>, <span class="option">-p</span></kbd></dt>
+<dt id="cli_reference_task_list_pool"><kbd>--pool, -p</kbd><a class="headerlink" href="#cli_reference_task_list_pool" title="Link to this argument">#</a></dt>
 <dd><p>Display all tasks by this pool. Users can pass multiple values to this flag. If not specified, all pools will be selected.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code></p>
 </dd>
-<dt><kbd><span class="option">--node</span>, <span class="option">-n</span></kbd></dt>
+<dt id="cli_reference_task_list_node"><kbd>--node, -n</kbd><a class="headerlink" href="#cli_reference_task_list_node" title="Link to this argument">#</a></dt>
 <dd><p>Display all tasks which ran on this node. Users can pass multiple values to this flag. If not specified, all nodes will be selected.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">[]</span></code></p>
 </dd>
-<dt><kbd><span class="option">--started-after</span></kbd></dt>
+<dt id="cli_reference_task_list_started_after"><kbd>--started-after</kbd><a class="headerlink" href="#cli_reference_task_list_started_after" title="Link to this argument">#</a></dt>
 <dd><p>Filter for tasks that were started after AND including this date. Must be in format YYYY-MM-DD.
 Example: –started-after 2023-05-03.</p>
 </dd>
-<dt><kbd><span class="option">--started-before</span></kbd></dt>
+<dt id="cli_reference_task_list_started_before"><kbd>--started-before</kbd><a class="headerlink" href="#cli_reference_task_list_started_before" title="Link to this argument">#</a></dt>
 <dd><p>Filter for tasks that were started before (NOT including) this date. Must be in format YYYY-MM-DD.
 Example: –started-after 2023-05-02 –started-before 2023-05-04 includes all tasks that were started any time on May 2nd and May 3rd only.</p>
 </dd>
-<dt><kbd><span class="option">--count</span>, <span class="option">-c</span></kbd></dt>
+<dt id="cli_reference_task_list_count"><kbd>--count, -c</kbd><a class="headerlink" href="#cli_reference_task_list_count" title="Link to this argument">#</a></dt>
 <dd><p>Display the given count of tasks. Default value is 20. Max value of 1000.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">20</span></code></p>
 </dd>
-<dt><kbd><span class="option">--offset</span>, <span class="option">-f</span></kbd></dt>
+<dt id="cli_reference_task_list_offset"><kbd>--offset, -f</kbd><a class="headerlink" href="#cli_reference_task_list_offset" title="Link to this argument">#</a></dt>
 <dd><p>Used for pagination. Returns starting tasks from the offset index.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
 </dd>
-<dt><kbd><span class="option">--order</span>, <span class="option">-o</span></kbd></dt>
+<dt id="cli_reference_task_list_order"><kbd>--order, -o</kbd><a class="headerlink" href="#cli_reference_task_list_order" title="Link to this argument">#</a></dt>
 <dd><p>Possible choices: asc, desc</p>
 <p>Display in the order in which tasks were started. asc means latest at the bottom. desc means latest at the top.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">'asc'</span></code></p>
 </dd>
-<dt><kbd><span class="option">--verbose</span>, <span class="option">-v</span></kbd></dt>
+<dt id="cli_reference_task_list_verbose"><kbd>--verbose, -v</kbd><a class="headerlink" href="#cli_reference_task_list_verbose" title="Link to this argument">#</a></dt>
 <dd><p>Display storage, cpu, memory, and gpu request.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--summary</span>, <span class="option">-S</span></kbd></dt>
+<dt id="cli_reference_task_list_summary"><kbd>--summary, -S</kbd><a class="headerlink" href="#cli_reference_task_list_summary" title="Link to this argument">#</a></dt>
 <dd><p>Displays resource request grouped by user and pool.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--aggregate-by-workflow</span>, <span class="option">-W</span></kbd></dt>
+<dt id="cli_reference_task_list_aggregate_by_workflow"><kbd>--aggregate-by-workflow, -W</kbd><a class="headerlink" href="#cli_reference_task_list_aggregate_by_workflow" title="Link to this argument">#</a></dt>
 <dd><p>Aggregate resource request by workflow.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
 </dd>
-<dt><kbd><span class="option">--priority</span></kbd></dt>
+<dt id="cli_reference_task_list_priority"><kbd>--priority</kbd><a class="headerlink" href="#cli_reference_task_list_priority" title="Link to this argument">#</a></dt>
 <dd><p>Possible choices: HIGH, NORMAL, LOW</p>
 <p>Filter tasks by priority levels.</p>
 </dd>
-<dt><kbd><span class="option">--format-type</span>, <span class="option">-t</span></kbd></dt>
+<dt id="cli_reference_task_list_format_type"><kbd>--format-type, -t</kbd><a class="headerlink" href="#cli_reference_task_list_format_type" title="Link to this argument">#</a></dt>
 <dd><p>Possible choices: json, text</p>
 <p>Specify the output format type (Default text).</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">'text'</span></code></p>
@@ -777,9 +783,9 @@ Example: –started-after 2023-05-02 –started-before 2023-05-04 includes all t
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sub-commands">Sub-commands</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#list">list</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.cli.main_parser-create_cli_parser-positional-arguments">Positional Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#Sub-commands">Sub-commands</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cli_reference_task_list">list</a></li>
 </ul>
 </li>
 </ul>

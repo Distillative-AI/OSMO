@@ -24,45 +24,48 @@ usage: osmo token [-h] {set,delete,list} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: set, delete, list
+* **command**: 
+
+Possible choices: set, delete, list
 
 ## Sub-commands
-
-<a id="cli-reference-token-set"></a>
 
 ### set
 
 Set a token for the current user.
 
 ```default
-osmo token set [-h] [--expires-at EXPIRES_AT] [--description DESCRIPTION] [--service] [--roles ROLES [ROLES ...]] [--format-type {json,text}] name
+osmo token set [-h] [--expires-at EXPIRES_AT] [--description DESCRIPTION]
+               [--service] [--roles ROLES [ROLES ...]]
+               [--format-type {json,text}]
+               name
 ```
 
 #### Positional Arguments
 
-`name`
-: Name of the token.
+* **name**: 
+
+Name of the token.
 
 #### Named Arguments
 
-* **--expires-at-e**: 
+* **--expires-at, -e**: 
 
 Expiration date of the token. The date is based on UTC time. Format: YYYY-MM-DD
 
-Default: `'2025-11-06'`
-* **--description-d**: 
+Default: `2026-01-09`
+* **--description, -d**: 
 
 Description of the token.
-* **--service-s**: 
+* **--service, -s**: 
 
 Create a service token.
 
 Default: `False`
-* **--roles-r**: 
+* **--roles, -r**: 
 
 Roles for the token. Only applicable for service tokens.
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -70,7 +73,7 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
-<a id="cli-reference-token-delete"></a>
+Ex. osmo token set my-token –expires-at 2026-05-01 –description “My token description”
 
 ### delete
 
@@ -82,18 +85,19 @@ osmo token delete [-h] [--service] name
 
 #### Positional Arguments
 
-`name`
-: Name of the token.
+* **name**: 
+
+Name of the token.
 
 #### Named Arguments
 
-* **--service-s**: 
+* **--service, -s**: 
 
 Delete a service token.
 
 Default: `False`
 
-<a id="cli-reference-token-list"></a>
+Ex. osmo token delete my-token
 
 ### list
 
@@ -105,15 +109,17 @@ osmo token list [-h] [--service] [--format-type {json,text}]
 
 #### Named Arguments
 
-* **--service-s**: 
+* **--service, -s**: 
 
 List all service tokens.
 
 Default: `False`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
+
+Ex. osmo token list
