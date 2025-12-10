@@ -71,7 +71,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
-    <meta name="docbuild:last-update" content="Dec 03, 2025"/>
+    <meta name="docbuild:last-update" content="Dec 10, 2025"/>
 
 
   </head>
@@ -507,42 +507,45 @@
                   
   <section id="osmo-login">
 <h1>osmo login<a class="headerlink" href="#osmo-login" title="Link to this heading">#</a></h1>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">osmo</span> <span class="n">login</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">device</span><span class="o">-</span><span class="n">endpoint</span> <span class="n">DEVICE_ENDPOINT</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">method</span> <span class="p">{</span><span class="n">code</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">token</span><span class="p">,</span><span class="n">dev</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">username</span> <span class="n">USERNAME</span><span class="p">]</span>
-               <span class="p">[</span><span class="o">--</span><span class="n">password</span> <span class="n">PASSWORD</span> <span class="o">|</span> <span class="o">--</span><span class="n">password</span><span class="o">-</span><span class="n">file</span> <span class="n">PASSWORD_FILE</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">token</span> <span class="n">TOKEN</span> <span class="o">|</span> <span class="o">--</span><span class="n">token</span><span class="o">-</span><span class="n">file</span> <span class="n">TOKEN_FILE</span><span class="p">]</span>
-               <span class="n">url</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">usage</span><span class="p">:</span> <span class="n">osmo</span> <span class="n">login</span> <span class="p">[</span><span class="o">-</span><span class="n">h</span><span class="p">]</span> <span class="p">[</span><span class="o">--</span><span class="n">device</span><span class="o">-</span><span class="n">endpoint</span> <span class="n">DEVICE_ENDPOINT</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">--</span><span class="n">method</span> <span class="p">{</span><span class="n">code</span><span class="p">,</span><span class="n">password</span><span class="p">,</span><span class="n">token</span><span class="p">,</span><span class="n">dev</span><span class="p">}]</span> <span class="p">[</span><span class="o">--</span><span class="n">username</span> <span class="n">USERNAME</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">--</span><span class="n">password</span> <span class="n">PASSWORD</span> <span class="o">|</span> <span class="o">--</span><span class="n">password</span><span class="o">-</span><span class="n">file</span> <span class="n">PASSWORD_FILE</span><span class="p">]</span>
+                  <span class="p">[</span><span class="o">--</span><span class="n">token</span> <span class="n">TOKEN</span> <span class="o">|</span> <span class="o">--</span><span class="n">token</span><span class="o">-</span><span class="n">file</span> <span class="n">TOKEN_FILE</span><span class="p">]</span>
+                  <span class="n">url</span>
 </pre></div>
 </div>
-<section id="positional-arguments">
-<h2>Positional Arguments<a class="headerlink" href="#positional-arguments" title="Link to this heading">#</a></h2>
-<dl class="simple">
-<dt><kbd class="kbd docutils literal notranslate">url</kbd></dt><dd><p>The url of the osmo server to connect to</p>
+<section id="src.cli.main_parser-create_cli_parser-positional-arguments">
+<h2>Positional Arguments<a class="headerlink" href="#src.cli.main_parser-create_cli_parser-positional-arguments" title="Link to this heading">#</a></h2>
+<dl class="option-list">
+<dt><kbd>url</kbd></dt>
+<dd><p>The url of the osmo server to connect to</p>
 </dd>
 </dl>
 </section>
-<section id="named-arguments">
-<h2>Named Arguments<a class="headerlink" href="#named-arguments" title="Link to this heading">#</a></h2>
+<section id="src.cli.main_parser-create_cli_parser-named-arguments">
+<h2>Named Arguments<a class="headerlink" href="#src.cli.main_parser-create_cli_parser-named-arguments" title="Link to this heading">#</a></h2>
 <dl class="option-list">
-<dt><kbd><span class="option">--device-endpoint</span></kbd></dt>
+<dt><kbd>--device-endpoint</kbd></dt>
 <dd><p>The url to use to completed device flow authentication. If not provided, it will be fetched from the service.</p>
 </dd>
-<dt><kbd><span class="option">--method</span></kbd></dt>
+<dt><kbd>--method</kbd></dt>
 <dd><p>Possible choices: code, password, token, dev</p>
 <p>code: Get a device code and url to log in securely through browser. password: Provide username and password directly through CLI. token: Read an idToken directly from a file.</p>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">'code'</span></code></p>
 </dd>
-<dt><kbd><span class="option">--username</span></kbd></dt>
+<dt><kbd>--username</kbd></dt>
 <dd><p>Username if logging in with credentials. This should only be used for service accounts that cannot authenticate via web browser.</p>
 </dd>
-<dt><kbd><span class="option">--password</span></kbd></dt>
+<dt><kbd>--password</kbd></dt>
 <dd><p>Password if logging in with credentials.</p>
 </dd>
-<dt><kbd><span class="option">--password-file</span></kbd></dt>
+<dt><kbd>--password-file</kbd></dt>
 <dd><p>File containing password if logging in with credentials.</p>
 </dd>
-<dt><kbd><span class="option">--token</span></kbd></dt>
+<dt><kbd>--token</kbd></dt>
 <dd><p>Token if logging in with credentials.</p>
 </dd>
-<dt><kbd><span class="option">--token-file</span></kbd></dt>
+<dt><kbd>--token-file</kbd></dt>
 <dd><p>File containing the refresh token URL, with all parameters appended.</p>
 </dd>
 </dl>
@@ -598,8 +601,8 @@
   </div>
   <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#positional-arguments">Positional Arguments</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#named-arguments">Named Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.cli.main_parser-create_cli_parser-positional-arguments">Positional Arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#src.cli.main_parser-create_cli_parser-named-arguments">Named Arguments</a></li>
 </ul>
   </nav></div>
 
@@ -692,7 +695,7 @@
 </div>
       
         <div class="footer-item"><p class="last-updated">
-  Last updated on Dec 03, 2025.
+  Last updated on Dec 10, 2025.
   <br/>
 </p></div>
       

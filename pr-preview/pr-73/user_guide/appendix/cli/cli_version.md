@@ -24,7 +24,7 @@ usage: osmo version [-h] [--format-type {json,text}]
 
 ## Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 

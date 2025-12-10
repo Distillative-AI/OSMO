@@ -24,8 +24,9 @@ usage: osmo profile [-h] {set,list} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: set, list
+* **command**: 
+
+Possible choices: set, list
 
 ## Sub-commands
 
@@ -39,16 +40,24 @@ osmo profile set [-h] {notifications,bucket,pool} value [{true,false}]
 
 #### Positional Arguments
 
-`setting`
-: Field to set
+* **setting**: 
 
-`value`
-: Type of notification, or name of bucket/pool
+Possible choices: notifications, bucket, pool
 
-`enabled`
-: Enable or disable, strictly for notifications.
+Field to set
+* **value**: 
 
-<a id="cli-reference-profile-list"></a>
+Type of notification, or name of bucket/pool
+* **enabled**: 
+
+Possible choices: true, false
+
+Enable or disable, strictly for notifications.
+
+Ex. osmo profile set bucket my_bucket
+Ex. osmo profile set pool my_pool
+Ex. osmo profile set notifications email true # Enable only email notifications
+Ex. osmo profile set notifications slack false # Disable slack notifications
 
 ### list
 
@@ -60,7 +69,7 @@ osmo profile list [-h] [--format-type {json,text}]
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 

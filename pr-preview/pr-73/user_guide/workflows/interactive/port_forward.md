@@ -23,7 +23,7 @@ You can port-forward from a running task in the workflow through the CLI or the 
 ## CLI
 
 Forward ports from a running task of your workflow to your local host or browser using `port-forward` command.
-For detailed CLI options, see [osmo workflow port-forward](../../appendix/cli/cli_workflow.md#cli-reference-workflow-port-forward).
+For detailed CLI options, see [osmo workflow port-forward](../../appendix/cli/cli_workflow.md#cli_reference_workflow_port_forward).
 
 If your workflow is hosting a **web application** that listens on a **single** port, you can go to the URL provided after running port forwarding to view
 the application through your web browser. If your workflow is hosting a more complex service like Isaac Sim, you can

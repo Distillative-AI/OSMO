@@ -20,7 +20,7 @@ SPDX-License-Identifier: Apache-2.0 -->
 
 ## Viewing Settings
 
-You can use the [Profile List CLI command](../appendix/cli/cli_profile.md#cli-reference-profile-list) to view your current
+You can use the [Profile List CLI command](../appendix/cli/cli_profile.md#cli_reference_profile_list) to view your current
 profile, including bucket and pool defaults.
 
 ```bash
@@ -87,8 +87,8 @@ Key benefits:
 
 See [Pools](../resource_pools/index.md#concepts-pools) for complete details.
 
-To choose a default pool, use the [Profile List CLI command](../appendix/cli/cli_profile.md#cli-reference-profile-list) to
-view available pools and [Resource List CLI command](../appendix/cli/cli_resource.md#cli-reference-resource-list) to see what
+To choose a default pool, use the [Profile List CLI command](../appendix/cli/cli_profile.md#cli_reference_profile_list) to
+view available pools and [Resource List CLI command](../appendix/cli/cli_resource.md#cli_reference_resource_list) to see what
 resources are in each pool.
 
 Set the default pool using the profile CLI.

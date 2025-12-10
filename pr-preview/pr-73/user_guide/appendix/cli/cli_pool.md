@@ -24,12 +24,11 @@ usage: osmo pool [-h] {list} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: list
+* **command**: 
+
+Possible choices: list
 
 ## Sub-commands
-
-<a id="cli-reference-pool-list"></a>
 
 ### list
 
@@ -56,24 +55,25 @@ Total Free      | Free GPUs on nodes in the pool
 ```
 
 ```default
-osmo pool list [-h] [--pool POOL [POOL ...]] [--format-type {json,text}] [--mode {free,used}]
+osmo pool list [-h] [--pool POOL [POOL ...]] [--format-type {json,text}]
+               [--mode {free,used}]
 ```
 
 #### Named Arguments
 
-* **--pool-p**: 
+* **--pool, -p**: 
 
 Display resources for specified pool.
 
 Default: `[]`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
-* **--mode-m**: 
+* **--mode, -m**: 
 
 Possible choices: free, used
 

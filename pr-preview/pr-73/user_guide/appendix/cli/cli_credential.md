@@ -24,8 +24,9 @@ usage: osmo credential [-h] [--format-type {json,text}] {set,list,delete} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: set, list, delete
+* **command**: 
+
+Possible choices: set, list, delete
 
 ## Named Arguments
 
@@ -44,13 +45,16 @@ Default: `'text'`
 Create or update a credential
 
 ```default
-osmo credential set [-h] [--type {REGISTRY,DATA,GENERIC}] (--payload PAYLOAD [PAYLOAD ...] | --payload-file PAYLOAD_FILE [PAYLOAD_FILE ...]) name
+osmo credential set [-h] [--type {REGISTRY,DATA,GENERIC}]
+                    (--payload PAYLOAD [PAYLOAD ...] | --payload-file PAYLOAD_FILE [PAYLOAD_FILE ...])
+                    name
 ```
 
 #### Positional Arguments
 
-`name`
-: Name of the credential.
+* **name**: 
+
+Name of the credential.
 
 #### Named Arguments
 
@@ -76,6 +80,11 @@ The tabulated information illustrates the mandatory and optional keys for the pa
 List of key-value pairs, but the value provided needs to be a path to a file.
 Retrieves the value of the secret from a file.
 
+Ex. osmo credential set registry_cred_name –type REGISTRY –payload registry=your_registry username=your_username auth=xxxxxx
+Ex. osmo credential set data_cred_name –type DATA –payload access_key_id=your_s3_username access_key=xxxxxx endpoint=s3://bucket
+Ex. osmo credential set generic_cred_name –type GENERIC –payload omni_user=your_omni_username omni_pass=xxxxxx
+Ex. osmo credential set generic_cred_name –type GENERIC –payload-file ssh_public_key=<path to file>
+
 ### list
 
 List all credentials
@@ -83,6 +92,8 @@ List all credentials
 ```default
 osmo credential list [-h]
 ```
+
+Ex. osmo credential list
 
 ### delete
 
@@ -94,5 +105,8 @@ osmo credential delete [-h] name
 
 #### Positional Arguments
 
-`name`
-: Delete credential with name.
+* **name**: 
+
+Delete credential with name.
+
+Ex. osmo credential delete omni_cred

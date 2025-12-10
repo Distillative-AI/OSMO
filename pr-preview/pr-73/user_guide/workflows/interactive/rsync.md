@@ -19,7 +19,7 @@ SPDX-License-Identifier: Apache-2.0 -->
 # Rsync
 
 Rsync upload to a running task in your workflow from your local machine using `rsync` command.
-For detailed CLI options, see [osmo workflow rsync](../../appendix/cli/cli_workflow.md#cli-reference-workflow-rsync).
+For detailed CLI options, see [osmo workflow rsync](../../appendix/cli/cli_workflow.md#cli_reference_workflow_rsync).
 
 > **Caution**
 >

@@ -24,8 +24,9 @@ usage: osmo bucket [-h] {list} ...
 
 ## Positional Arguments
 
-`command`
-: Possible choices: list
+* **command**: 
+
+Possible choices: list
 
 ## Sub-commands
 
@@ -39,10 +40,12 @@ osmo bucket list [-h] [--format-type {json,text}]
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
+
+Ex. osmo bucket list

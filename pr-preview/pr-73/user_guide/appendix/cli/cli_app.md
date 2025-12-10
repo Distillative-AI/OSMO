@@ -18,14 +18,18 @@ SPDX-License-Identifier: Apache-2.0 -->
 
 # osmo app
 
+Apps are reusable workflow files that can be shared with other users.
+
 ```default
-usage: osmo app [-h] {create,update,info,show,spec,list,delete,rename,submit} ...
+usage: osmo app [-h]
+                {create,update,info,show,spec,list,delete,rename,submit} ...
 ```
 
 ## Positional Arguments
 
-`command`
-: Possible choices: create, update, info, show, spec, list, delete, rename, submit
+* **command**: 
+
+Possible choices: create, update, info, show, spec, list, delete, rename, submit
 
 ## Sub-commands
 
@@ -39,17 +43,20 @@ osmo app create [-h] --description DESCRIPTION [--file FILE] name
 
 #### Positional Arguments
 
-`name`
-: Name of the app.
+* **name**: 
+
+Name of the app.
 
 #### Named Arguments
 
-* **--description-d**: 
+* **--description, -d**: 
 
 Description of the app.
-* **--file-f**: 
+* **--file, -f**: 
 
 Path to the app file.
+
+Ex. osmo app create my-app –description “My app description”
 
 ### update
 
@@ -61,49 +68,57 @@ osmo app update [-h] [--file FILE] name
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Can specify a version number to edit from a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Can specify a version number to edit from a specific version by using <app>:<version> format.
 
 #### Named Arguments
 
-* **--file-f**: 
+* **--file, -f**: 
 
 Path to the app file.
+
+Ex. osmo app update my-app
 
 ### info
 
 Show app and app version information.
 
 ```default
-osmo app info [-h] [--count COUNT] [--order {asc,desc}] [--format-type {json,text}] name
+osmo app info [-h] [--count COUNT] [--order {asc,desc}]
+              [--format-type {json,text}]
+              name
 ```
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
 
 #### Named Arguments
 
-* **--count-c**: 
+* **--count, -c**: 
 
 For Datasets. Display the given number of versions. Default 20.
 
 Default: `20`
-* **--order-o**: 
+* **--order, -o**: 
 
 Possible choices: asc, desc
 
 Display in the given order. asc means latest at the bottom. desc means latest at the top
 
 Default: `'asc'`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
+
+Ex. osmo app info my-app
 
 ### show
 
@@ -115,8 +130,9 @@ osmo app show [-h] name
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
 
 ### spec
 
@@ -128,44 +144,45 @@ osmo app spec [-h] name
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Specify version to get info from a specific version by using <app>:<version> format.
 
 ### list
 
 Lists all apps you created, updated, or submitted by default. If –user is specified, it will list all apps owned by the user(s).
 
 ```default
-osmo app list [-h] [--name NAME] [--user USER [USER ...]] [--all-users] [--count COUNT] [--order {asc,desc}]
-                  [--format-type {json,text}]
+osmo app list [-h] [--name NAME] [--user USER [USER ...]] [--all-users]
+              [--count COUNT] [--order {asc,desc}] [--format-type {json,text}]
 ```
 
 #### Named Arguments
 
-* **--name-n**: 
+* **--name, -n**: 
 
 Display apps that have the given substring in their name
-* **--user-u**: 
+* **--user, -u**: 
 
 Display all app where the user has created.
-* **--all-users-a**: 
+* **--all-users, -a**: 
 
 Display all apps with no filtering on users
 
 Default: `False`
-* **--count-c**: 
+* **--count, -c**: 
 
 Display the given number of apps. Default 20.
 
 Default: `20`
-* **--order-o**: 
+* **--order, -o**: 
 
 Possible choices: asc, desc
 
 Display in the given order. asc means latest at the bottom. desc means latest at the top
 
 Default: `'asc'`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -183,21 +200,24 @@ osmo app delete [-h] [--all] [--force] name
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Specify version to delete a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Specify version to delete a specific version by using <app>:<version> format.
 
 #### Named Arguments
 
-* **--all-a**: 
+* **--all, -a**: 
 
 Delete all versions of the app.
 
 Default: `False`
-* **--force-f**: 
+* **--force, -f**: 
 
 Delete the app without user confirmation.
 
 Default: `False`
+
+Ex. osmo app delete my-app
 
 ### rename
 
@@ -209,39 +229,45 @@ osmo app rename [-h] [--force] original_name new_name
 
 #### Positional Arguments
 
-`original_name`
-: Original name of the app.
+* **original_name**: 
 
-`new_name`
-: New name for the app.
+Original name of the app.
+* **new_name**: 
+
+New name for the app.
 
 #### Named Arguments
 
-* **--force-f**: 
+* **--force, -f**: 
 
 Rename the app without user confirmation.
 
 Default: `False`
+
+Ex. osmo app rename original-app-name new-app-name
 
 ### submit
 
 Submit a workflow app version you created.
 
 ```default
-osmo app submit [-h] [--format-type {json,text}] [--set SET [SET ...]] [--set-string SET_STRING [SET_STRING ...]]
-                    [--set-env SET_ENV [SET_ENV ...]] [--dry-run] [--pool POOL] [--local-path LOCAL_PATH] [--rsync RSYNC]
-                    [--priority {HIGH,NORMAL,LOW}]
-                    name
+osmo app submit [-h] [--format-type {json,text}] [--set SET [SET ...]]
+                [--set-string SET_STRING [SET_STRING ...]]
+                [--set-env SET_ENV [SET_ENV ...]] [--dry-run] [--pool POOL]
+                [--local-path LOCAL_PATH] [--rsync RSYNC]
+                [--priority {HIGH,NORMAL,LOW}]
+                name
 ```
 
 #### Positional Arguments
 
-`name`
-: Name of the app. Specify version to submit a specific version by using <app>:<version> format.
+* **name**: 
+
+Name of the app. Specify version to submit a specific version by using <app>:<version> format.
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -268,10 +294,10 @@ Default: `[]`
 Does not submit the workflow and prints the workflow into the console.
 
 Default: `False`
-* **--pool-p**: 
+* **--pool, -p**: 
 
 The target pool to run the workflow with. If no pool is specified, the default pool assigned in the profile will be used.
-* **--local-path-l**: 
+* **--local-path, -l**: 
 
 The absolute path to the location for where local files in the workflow file should be fetched from. If not specified, the current working directory will be used.
 * **--rsync**: 

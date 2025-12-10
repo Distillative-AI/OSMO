@@ -19,36 +19,41 @@ SPDX-License-Identifier: Apache-2.0 -->
 # osmo workflow
 
 ```default
-usage: osmo workflow [-h] {submit,restart,validate,logs,cancel,query,list,tag,exec,spec,port-forward,rsync} ...
+usage: osmo workflow [-h]
+                     {submit,restart,validate,logs,cancel,query,list,tag,exec,spec,port-forward,rsync}
+                     ...
 ```
 
 ## Positional Arguments
 
-`command`
-: Possible choices: submit, restart, validate, logs, cancel, query, list, tag, exec, spec, port-forward, rsync
+* **command**: 
+
+Possible choices: submit, restart, validate, logs, cancel, query, list, tag, exec, spec, port-forward, rsync
 
 ## Sub-commands
-
-<a id="cli-reference-workflow-submit"></a>
 
 ### submit
 
 Submit a workflow to the workflow service.
 
 ```default
-osmo workflow submit [-h] [--format-type {json,text}] [--set SET [SET ...]] [--set-string SET_STRING [SET_STRING ...]]
-                         [--set-env SET_ENV [SET_ENV ...]] [--dry-run] [--pool POOL] [--rsync RSYNC] [--priority {HIGH,NORMAL,LOW}]
-                         workflow_file
+osmo workflow submit [-h] [--format-type {json,text}] [--set SET [SET ...]]
+                     [--set-string SET_STRING [SET_STRING ...]]
+                     [--set-env SET_ENV [SET_ENV ...]] [--dry-run]
+                     [--pool POOL] [--rsync RSYNC]
+                     [--priority {HIGH,NORMAL,LOW}]
+                     workflow_file
 ```
 
 #### Positional Arguments
 
-`workflow_file`
-: The workflow file to submit, or the spec of a workflow ID to submit. If using a workflow ID, –dry-run and –set are not supported.
+* **workflow_file**: 
+
+The workflow file to submit, or the spec of a workflow ID to submit. If using a workflow ID, –dry-run and –set are not supported.
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -75,7 +80,7 @@ Default: `[]`
 Does not submit the workflow and prints the workflow into the console.
 
 Default: `False`
-* **--pool-p**: 
+* **--pool, -p**: 
 
 The target pool to run the workflow with. If no pool is specified, the default pool assigned in the profile will be used.
 * **--rsync**: 
@@ -87,31 +92,31 @@ Possible choices: HIGH, NORMAL, LOW
 
 The priority to use when scheduling the workflow. If none is provided, NORMAL will be used. The scheduler will prioritize scheduling workflows in the order of HIGH, NORMAL, LOW. LOW workflows may be preempted to allow a higher priority workflow to run.
 
-<a id="cli-reference-workflow-restart"></a>
-
 ### restart
 
 Restart a failed workflow.
 
 ```default
-osmo workflow restart [-h] [--format-type {json,text}] [--pool POOL] workflow_id
+osmo workflow restart [-h] [--format-type {json,text}] [--pool POOL]
+                      workflow_id
 ```
 
 #### Positional Arguments
 
-`workflow_id`
-: The workflow ID or UUID to restart.
+* **workflow_id**: 
+
+The workflow ID or UUID to restart.
 
 #### Named Arguments
 
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
-* **--pool-p**: 
+* **--pool, -p**: 
 
 The target pool to run the workflow with.
 
@@ -120,13 +125,17 @@ The target pool to run the workflow with.
 validate a workflow to the workflow server.
 
 ```default
-osmo workflow validate [-h] [--set SET [SET ...]] [--set-string SET_STRING [SET_STRING ...]] [--pool POOL] workflow_file
+osmo workflow validate [-h] [--set SET [SET ...]]
+                       [--set-string SET_STRING [SET_STRING ...]]
+                       [--pool POOL]
+                       workflow_file
 ```
 
 #### Positional Arguments
 
-`workflow_file`
-: The workflow file to submit.
+* **workflow_file**: 
+
+The workflow file to submit.
 
 #### Named Arguments
 
@@ -140,76 +149,76 @@ Default: `[]`
 Assign fields in the workflow file with desired elements in the form “<field>=<value>”. These values will override values set in the “default-values” section. Overridden fields in the yaml file should be in the form {{ field }}. All values will be cast as string
 
 Default: `[]`
-* **--pool-p**: 
+* **--pool, -p**: 
 
 The target pool to run the workflow with. If no pool is specified, the default pool assigned in the profile will be used.
-
-<a id="cli-reference-workflow-logs"></a>
 
 ### logs
 
 Get the logs from a workflow.
 
 ```default
-osmo workflow logs [-h] [--task TASK] [--retry-id RETRY_ID] [--error] [-n LAST_N_LINES] workflow_id
+osmo workflow logs [-h] [--task TASK] [--retry-id RETRY_ID] [--error]
+                   [-n LAST_N_LINES]
+                   workflow_id
 ```
 
 #### Positional Arguments
 
-`workflow_id`
-: The workflow ID or UUID for which to fetch the logs.
+* **workflow_id**: 
+
+The workflow ID or UUID for which to fetch the logs.
 
 #### Named Arguments
 
-* **--task-t**: 
+* **--task, -t**: 
 
 The task name for which to fetch the logs.
-* **--retry-id-r**: 
+* **--retry-id, -r**: 
 
 The retry ID for the task which to fetch the logs. If not provided, the latest retry ID will be used.
 * **--error**: 
 
-Show error logs instead of regular logs. Requires `--task`.
+Show task error logs instead of regular logs
 
 Default: `False`
 * **-n**: 
 
 Show last n lines of logs
 
-<a id="cli-reference-workflow-cancel"></a>
-
 ### cancel
 
 Cancel a queued or running workflow.
 
 ```default
-osmo workflow cancel [-h] [--message MESSAGE] [--force] [--format-type {json,text}] workflow_ids [workflow_ids ...]
+osmo workflow cancel [-h] [--message MESSAGE] [--force]
+                     [--format-type {json,text}]
+                     workflow_ids [workflow_ids ...]
 ```
 
 #### Positional Arguments
 
-`workflow_ids`
-: The workflow IDs or UUIDs to cancel. Multiple IDs or UUIDs can be passed.
+* **workflow_ids**: 
+
+The workflow IDs or UUIDs to cancel. Multiple IDs or UUIDs can be passed.
 
 #### Named Arguments
 
-* **--message-m**: 
+* **--message, -m**: 
 
 Additional message describing reason for cancelation.
-* **--force-f**: 
+* **--force, -f**: 
 
 Force cancel task group pods in the cluster.
 
 Default: `False`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
 Specify the output format type (Default text).
 
 Default: `'text'`
-
-<a id="cli-reference-workflow-query"></a>
 
 ### query
 
@@ -221,17 +230,18 @@ osmo workflow query [-h] [--verbose] [--format-type {json,text}] workflow_id
 
 #### Positional Arguments
 
-`workflow_id`
-: The workflow ID or UUID to query the status of.
+* **workflow_id**: 
+
+The workflow ID or UUID to query the status of.
 
 #### Named Arguments
 
-* **--verbose-v**: 
+* **--verbose, -v**: 
 
 Whether to show all retried tasks.
 
 Default: `False`
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -239,42 +249,44 @@ Specify the output format type (Default text).
 
 Default: `'text'`
 
-<a id="cli-reference-workflow-list"></a>
-
 ### list
 
 List workflows with different filters. Without the –pool flag, workflows from all pools will be listed.
 
 ```default
-osmo workflow list [-h] [--count COUNT] [--name NAME] [--order {asc,desc}] [--status STATUS [STATUS ...]]
-                       [--format-type {json,text}] [--submitted-after SUBMITTED_AFTER] [--submitted-before SUBMITTED_BEFORE]
-                       [--tags TAGS [TAGS ...]] [--priority {HIGH,NORMAL,LOW} [{HIGH,NORMAL,LOW} ...]] [--user USER [USER ...] |
-                       --all-users] [--pool POOL [POOL ...]] [--app APP]
+osmo workflow list [-h] [--count COUNT] [--name NAME] [--order {asc,desc}]
+                   [--status STATUS [STATUS ...]] [--format-type {json,text}]
+                   [--submitted-after SUBMITTED_AFTER]
+                   [--submitted-before SUBMITTED_BEFORE]
+                   [--tags TAGS [TAGS ...]]
+                   [--priority {HIGH,NORMAL,LOW} [{HIGH,NORMAL,LOW} ...]]
+                   [--user USER [USER ...] | --all-users]
+                   [--pool POOL [POOL ...]] [--app APP]
 ```
 
 #### Named Arguments
 
-* **--count-c**: 
+* **--count, -c**: 
 
 Display the given count of workflows. Default value is 20.
 
 Default: `20`
-* **--name-n**: 
+* **--name, -n**: 
 
 Display workflows which contains the string.
-* **--order-o**: 
+* **--order, -o**: 
 
 Possible choices: asc, desc
 
 Display in the order in which workflows were submitted. asc means latest at the bottom. desc means latest at the top. Default is asc.
 
 Default: `'asc'`
-* **--status-s**: 
+* **--status, -s**: 
 
 Possible choices: RUNNING, FAILED, COMPLETED, PENDING, WAITING, FAILED_EXEC_TIMEOUT, FAILED_SERVER_ERROR, FAILED_QUEUE_TIMEOUT, FAILED_SUBMISSION, FAILED_CANCELED, FAILED_BACKEND_ERROR, FAILED_IMAGE_PULL, FAILED_EVICTED, FAILED_START_ERROR, FAILED_START_TIMEOUT, FAILED_PREEMPTED
 
 Display all workflows with the given status(es). Users can pass multiple values to this flag. Acceptable values: RUNNING, FAILED, COMPLETED, PENDING, WAITING, FAILED_EXEC_TIMEOUT, FAILED_SERVER_ERROR, FAILED_QUEUE_TIMEOUT, FAILED_SUBMISSION, FAILED_CANCELED, FAILED_BACKEND_ERROR, FAILED_IMAGE_PULL, FAILED_EVICTED, FAILED_START_ERROR, FAILED_START_TIMEOUT, FAILED_PREEMPTED
-* **--format-type-t**: 
+* **--format-type, -t**: 
 
 Possible choices: json, text
 
@@ -297,69 +309,68 @@ Filter for workflows that contain the tag(s).
 Possible choices: HIGH, NORMAL, LOW
 
 Filter workflows by priority levels.
-* **--user-u**: 
+* **--user, -u**: 
 
 Display all workflows by this user. Users can pass multiple values to this flag.
 
 Default: `[]`
-* **--all-users-a**: 
+* **--all-users, -a**: 
 
 Display all workflows with no filtering on users.
 
 Default: `False`
-* **--pool-p**: 
+* **--pool, -p**: 
 
 Display all workflows by this pool. Users can pass multiple values to this flag.
 
 Default: `[]`
-* **--app-P**: 
+* **--app, -P**: 
 
 Display all workflows created by this app. For a specific app or app version, use the format <app>:<version>.
-
-<a id="cli-reference-workflow-tag"></a>
 
 ### tag
 
 List or change tags from workflow(s) if no workflow is specified. Remove is applied before add
 
 ```default
-osmo workflow tag [-h] [--workflow WORKFLOW [WORKFLOW ...]] [--add ADD [ADD ...]] [--remove REMOVE [REMOVE ...]]
+osmo workflow tag [-h] [--workflow WORKFLOW [WORKFLOW ...]]
+                  [--add ADD [ADD ...]] [--remove REMOVE [REMOVE ...]]
 ```
 
 #### Named Arguments
 
-* **--workflow-w**: 
+* **--workflow, -w**: 
 
 List of workflows to update. If not set, the CLI will return the list of available tags to assign.
-* **--add-a**: 
+* **--add, -a**: 
 
 List of tags to add.
 
 Default: `[]`
-* **--remove-r**: 
+* **--remove, -r**: 
 
 List of tags to remove.
 
 Default: `[]`
-
-<a id="cli-reference-workflow-exec"></a>
 
 ### exec
 
 Exec into a task of a workflow.
 
 ```default
-osmo workflow exec [-h] [--group GROUP] [--entry EXEC_ENTRY_COMMAND] [--connect-timeout CONNECT_TIMEOUT] [--keep-alive]
-                       workflow_id [task]
+osmo workflow exec [-h] [--group GROUP] [--entry EXEC_ENTRY_COMMAND]
+                   [--connect-timeout CONNECT_TIMEOUT] [--keep-alive]
+                   workflow_id [task]
 ```
 
 #### Positional Arguments
 
-`workflow_id`
-: The workflow ID or UUID to exec in.
+* **workflow_id**: 
 
-`task`
-: The task name to exec into.
+The workflow ID or UUID to exec in.
+* **task**: 
+
+The task name to exec into.
 
 #### Named Arguments
 
@@ -382,8 +393,6 @@ Restart the exec command if connection is lost.
 
 Default: `False`
 
-<a id="cli-reference-workflow-spec"></a>
-
 ### spec
 
 Get workflow spec.
@@ -394,8 +403,9 @@ osmo workflow spec [-h] [--template] workflow_id
 
 #### Positional Arguments
 
-`workflow_id`
-: The workflow ID or UUID to query the status of.
+* **workflow_id**: 
+
+The workflow ID or UUID to query the status of.
 
 #### Named Arguments
 
@@ -405,23 +415,24 @@ Show the original templated spec
 
 Default: `False`
 
-<a id="cli-reference-workflow-port-forward"></a>
-
 ### port-forward
 
 Port-forward data from workflow to local machine.
 
 ```default
-osmo workflow port-forward [-h] [--host HOST] --port PORT [--udp] [--connect-timeout CONNECT_TIMEOUT] workflow_id task
+osmo workflow port-forward [-h] [--host HOST] --port PORT [--udp]
+                           [--connect-timeout CONNECT_TIMEOUT]
+                           workflow_id task
 ```
 
 #### Positional Arguments
 
-`workflow_id`
-: The ID or UUID of the workflow to port forward from
+* **workflow_id**: 
 
-`task`
-: Name of the task in the workflow to port forward from
+The ID or UUID of the workflow to port forward from
+* **task**: 
+
+Name of the task in the workflow to port forward from
 
 #### Named Arguments
 
@@ -444,7 +455,13 @@ The connection timeout period in seconds. Default is 60 seconds.
 
 Default: `60`
 
-<a id="cli-reference-workflow-rsync"></a>
+#### Examples
+
+Forward UDP traffic from a task to your local machine:
+
+```default
+osmo workflow port-forward wf-1 sim-task --port 47995-48012,49000-49007 --udp
+```
 
 ### rsync
 
@@ -453,26 +470,30 @@ Syncs data from local machine to a remote workflow task via a persistent backgro
 /osmo/run/workspace is always available as a remote path.
 
 ```default
-osmo workflow rsync [-h] [--status] [--stop] [--timeout TIMEOUT] [--upload-rate-limit UPLOAD_RATE_LIMIT]
-                        [--poll-interval POLL_INTERVAL] [--debounce-delay DEBOUNCE_DELAY] [--reconcile-interval RECONCILE_INTERVAL]
-                        [--max-log-size MAX_LOG_SIZE] [--verbose] [--once]
-                        [workflow_id] [task] [path]
+osmo workflow rsync [-h] [--status] [--stop] [--timeout TIMEOUT]
+                    [--upload-rate-limit UPLOAD_RATE_LIMIT]
+                    [--poll-interval POLL_INTERVAL]
+                    [--debounce-delay DEBOUNCE_DELAY]
+                    [--reconcile-interval RECONCILE_INTERVAL]
+                    [--max-log-size MAX_LOG_SIZE] [--verbose] [--once]
+                    [workflow_id] [task] [path]
 ```
 
 #### Positional Arguments
 
-`workflow_id`
-: The ID or UUID of the workflow to rsync to/from
+* **workflow_id**: 
 
-`task`
-: (Optional) The task to rsync upload to. If not provided, the upload will be to the lead task of the first group.
+The ID or UUID of the workflow to rsync to/from
+* **task**: 
 
-`path`
-: The src:dst path to rsync between.
+(Optional) The task to rsync upload to. If not provided, the upload will be to the lead task of the first group.
+* **path**: 
+
+The src:dst path to rsync between.
 
 #### Named Arguments
 
-* **--status-s**: 
+* **--status, -s**: 
 
 Show the status of all rsync daemons
 
@@ -514,3 +535,41 @@ Default: `False`
 Run a single rsync upload to the workflow. The upload will be done in the foreground and will automatically exit once the upload completes.
 
 Default: `False`
+
+#### Examples
+
+Upload to a task:
+
+```default
+osmo workflow rsync <workflow_id> <task_name> <local_path>:<remote_path>
+```
+
+Upload to lead task:
+
+```default
+osmo workflow rsync <workflow_id> <local_path>:<remote_path>
+```
+
+Run a single upload:
+
+```default
+osmo workflow rsync <workflow_id> <local_path>:<remote_path> --once
+```
+
+Get the status of daemons:
+
+```default
+osmo workflow rsync --status
+```
+
+Stop all daemons:
+
+```default
+osmo workflow rsync --stop
+```
+
+Stop a specific daemon:
+
+```default
+osmo workflow rsync <workflow_id> --stop
+```

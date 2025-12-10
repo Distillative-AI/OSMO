@@ -44,9 +44,8 @@ Top-level configuration is used to configure the compute backend.
 
 | **Field**           | **Type**   | **Description**                                                                                                                                                                | **Default Values**   |
 |---------------------|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| `scheduler_type`    | String     | Type of Kubernetes scheduler to use. Supported values: “default”, “kai”.                                                                                                       | `default`            |
-| `scheduler_name`    | String     | Name of the kubernetes scheduler or scheduler plugin to use. This should match the name of the scheduler or scheduler plugin in the kubernetes cluster. e.g., “kai-scheduler”. | `default-scheduler`  |
-| `coscheduling`      | Boolean    | Whether to enable co-scheduling for group workflows.                                                                                                                           | `False`              |
+| `scheduler_type`    | String     | Type of Kubernetes scheduler to use. Supported values: “kai”.                                                                                                                  | `kai`                |
+| `scheduler_name`    | String     | Name of the kubernetes scheduler or scheduler plugin to use. This should match the name of the scheduler or scheduler plugin in the kubernetes cluster. e.g., “kai-scheduler”. | `kai-scheduler`      |
 | `scheduler_timeout` | Integer    | Timeout in seconds for scheduling operations.                                                                                                                                  | `30`                 |
 
 ## Node Conditions
