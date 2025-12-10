@@ -30,7 +30,7 @@ usage: osmo config tag [-h] config_type [--set SET [SET ...]] [--delete DELETE [
 
 Possible choices: BACKEND, BACKEND_TEST, DATASET, POD_TEMPLATE, POOL, RESOURCE_VALIDATION, ROLE, SERVICE, WORKFLOW
 
-Config to update tags for in format <CONFIG_TYPE>[:<revision>]
+Config to update tags for in format <config_type>[:<revision>]
 
 ## Named Arguments
 

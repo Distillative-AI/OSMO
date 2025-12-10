@@ -30,7 +30,7 @@ usage: osmo config set [-h] config_type name type [--field FIELD] [--description
 
 Possible choices: ROLE
 
-Config type to set (CONFIG_TYPE)
+Config type to set (config_type)
 * **name**: 
 
 Name of the role

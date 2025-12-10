@@ -30,7 +30,7 @@ usage: osmo config delete [-h] config_type [name] [--description DESCRIPTION] [-
 
 Possible choices: BACKEND, BACKEND_TEST, DATASET, POD_TEMPLATE, POOL, RESOURCE_VALIDATION, ROLE, SERVICE, WORKFLOW
 
-Config type to delete or CONFIG_TYPE:revision_number to delete a specific revision
+Config type to delete or config_type:revision_number to delete a specific revision
 * **name**: 
 
 Name of the config to delete (required when not deleting a revision)

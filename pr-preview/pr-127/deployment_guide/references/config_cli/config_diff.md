@@ -20,7 +20,7 @@ SPDX-License-Identifier: Apache-2.0 -->
 
 Show the difference between two config revisions
 
-Available config types (CONFIG_TYPE): BACKEND, BACKEND_TEST, DATASET, POD_TEMPLATE, POOL, RESOURCE_VALIDATION, ROLE, SERVICE, WORKFLOW
+Available config types (config_type): BACKEND, BACKEND_TEST, DATASET, POD_TEMPLATE, POOL, RESOURCE_VALIDATION, ROLE, SERVICE, WORKFLOW
 
 ```default
 usage: osmo config diff [-h] first [second]
@@ -30,10 +30,10 @@ usage: osmo config diff [-h] first [second]
 
 * **first**: 
 
-First config to compare. Format: <CONFIG_TYPE>[:<revision>] (e.g. BACKEND:3). If no revision is provided, uses the current revision.
+First config to compare. Format: <config_type>[:<revision>] (e.g. BACKEND:3). If no revision is provided, uses the current revision.
 * **second**: 
 
-Second config to compare. Format: <CONFIG_TYPE>[:<revision>] (e.g. BACKEND:6). If no revision is provided, uses the current revision.
+Second config to compare. Format: <config_type>[:<revision>] (e.g. BACKEND:6). If no revision is provided, uses the current revision.
 
 ## Examples
 
