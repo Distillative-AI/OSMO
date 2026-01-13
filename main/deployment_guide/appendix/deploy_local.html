@@ -856,8 +856,9 @@ $<span class="w"> </span>helm<span class="w"> </span>upgrade<span class="w"> </s
 <section id="step-3-install-osmo">
 <h2>Step 3: Install OSMO<a class="headerlink" href="#step-3-install-osmo" title="Link to this heading">#</a></h2>
 <p>Deploy the complete OSMO platform with a single Helm command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>helm<span class="w"> </span>fetch<span class="w"> </span>https://helm.ngc.nvidia.com/nvidia/osmo/charts/quick-start-1.0.0.tgz
-$<span class="w"> </span>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>osmo<span class="w"> </span>quick-start-1.0.0.tgz<span class="w"> </span><span class="se">\</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>helm<span class="w"> </span>repo<span class="w"> </span>add<span class="w"> </span>osmo<span class="w"> </span>https://helm.ngc.nvidia.com/nvidia/osmo
+$<span class="w"> </span>helm<span class="w"> </span>repo<span class="w"> </span>update
+$<span class="w"> </span>helm<span class="w"> </span>upgrade<span class="w"> </span>--install<span class="w"> </span>osmo<span class="w"> </span>osmo/quick-start<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--namespace<span class="w"> </span>osmo<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--create-namespace<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--wait
