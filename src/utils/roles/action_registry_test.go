@@ -19,6 +19,7 @@ SPDX-License-Identifier: Apache-2.0
 package roles
 
 import (
+	"context"
 	"testing"
 )
 
@@ -240,7 +241,7 @@ func TestExtractResourceFromPath(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			got := extractResourceFromPath(tt.path, tt.action)
+			got := extractResourceFromPath(context.Background(), tt.path, tt.action, nil)
 			if got != tt.wantResource {
 				t.Errorf("extractResourceFromPath(%q, %q) = %q, want %q",
 					tt.path, tt.action, got, tt.wantResource)
@@ -265,7 +266,7 @@ func TestDefaultRolesWithRegistry(t *testing.T) {
 	}
 
 	for _, tt := range adminTests {
-		action, _ := ResolvePathToAction(tt.path, tt.method)
+		action, _ := ResolvePathToAction(context.Background(), tt.path, tt.method, nil)
 		if action != tt.wantAction {
 			t.Errorf("Admin path %s %s: got action %q, want %q",
 				tt.method, tt.path, action, tt.wantAction)
@@ -284,7 +285,7 @@ func TestDefaultRolesWithRegistry(t *testing.T) {
 	}
 
 	for _, tt := range defaultTests {
-		action, _ := ResolvePathToAction(tt.path, tt.method)
+		action, _ := ResolvePathToAction(context.Background(), tt.path, tt.method, nil)
 		if action != tt.wantAction {
 			t.Errorf("Default path %s %s: got action %q, want %q",
 				tt.method, tt.path, action, tt.wantAction)
@@ -306,7 +307,7 @@ func TestInternalActionsRestricted(t *testing.T) {
 	}
 
 	for _, tt := range internalTests {
-		action, _ := ResolvePathToAction(tt.path, tt.method)
+		action, _ := ResolvePathToAction(context.Background(), tt.path, tt.method, nil)
 		if action != tt.wantAction {
 			t.Errorf("Internal path %s %s: got action %q, want %q",
 				tt.method, tt.path, action, tt.wantAction)
