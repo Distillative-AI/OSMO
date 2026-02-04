@@ -143,8 +143,7 @@ func (el *EventListener) sendMessages(ctx context.Context, cancel context.Cancel
 	for {
 		select {
 		case <-done:
-			log.Println("Stopping message sender, draining channel...")
-			el.drainChannel(eventChan)
+			log.Println("Stopping message sender")
 			return
 		case <-watcherDone:
 			// Check if this was due to context cancellation (expected) vs unexpected stop
@@ -152,8 +151,7 @@ func (el *EventListener) sendMessages(ctx context.Context, cancel context.Cancel
 				log.Println("Event watcher stopped due to context cancellation")
 				return
 			}
-			log.Println("Event watcher stopped unexpectedly, draining channel...")
-			el.drainChannel(eventChan)
+			log.Println("Event watcher stopped unexpectedly")
 			cancel(fmt.Errorf("event watcher stopped"))
 			return
 		case <-progressTicker.C:
@@ -194,29 +192,6 @@ func (el *EventListener) sendEventMessage(ctx context.Context, event *corev1.Eve
 	}
 
 	return nil
-}
-
-// drainChannel saves any remaining messages in the channel to unacked queue
-func (el *EventListener) drainChannel(eventChan <-chan *corev1.Event) {
-	drained := 0
-	unackedMessages := el.GetUnackedMessages()
-	for {
-		select {
-		case event := <-eventChan:
-			msg, err := createPodEventMessage(event)
-			if err != nil {
-				log.Printf("Failed to create message during drain: %v", err)
-				continue
-			}
-			unackedMessages.AddMessageForced(msg)
-			drained++
-		default:
-			if drained > 0 {
-				log.Printf("Drained %d messages from channel to unacked queue", drained)
-			}
-			return
-		}
-	}
 }
 
 // watchEvents watches for Kubernetes events and sends them to a channel
