@@ -35,7 +35,7 @@ type ListenerArgs struct {
 	EventChanSize         int // Buffer size for event channel (EventListener)
 	ResyncPeriodSec       int
 	StateCacheTTLMin      int
-	EventCacheTTL         int // TTL in minutes for event deduplication (EventListener)
+	EventCacheTTLMin      int // TTL in minutes for event deduplication (EventListener)
 	MaxUnackedMessages    int
 	NodeConditionPrefix   string
 	ProgressDir           string
@@ -72,7 +72,7 @@ func ListenerParse() ListenerArgs {
 	stateCacheTTLMin := flag.Int("stateCacheTTLMin",
 		getEnvInt("STATE_CACHE_TTL_MIN", 15),
 		"TTL in minutes for state cache entries (WorkflowListener)")
-	eventCacheTTL := flag.Int("eventCacheTTL",
+	eventCacheTTLMin := flag.Int("eventCacheTTLMin",
 		getEnvInt("EVENT_CACHE_TTL_MIN", 15),
 		"TTL in minutes for event deduplication (EventListener)")
 	maxUnackedMessages := flag.Int("maxUnackedMessages",
@@ -103,7 +103,7 @@ func ListenerParse() ListenerArgs {
 		EventChanSize:         *eventChanSize,
 		ResyncPeriodSec:       *resyncPeriodSec,
 		StateCacheTTLMin:      *stateCacheTTLMin,
-		EventCacheTTL:         *eventCacheTTL,
+		EventCacheTTLMin:      *eventCacheTTLMin,
 		MaxUnackedMessages:    *maxUnackedMessages,
 		NodeConditionPrefix:   *nodeConditionPrefix,
 		ProgressDir:           *progressDir,

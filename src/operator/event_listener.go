@@ -210,7 +210,7 @@ func watchEvents(
 	log.Printf("Starting event watcher for namespace: %s", args.Namespace)
 
 	// Event sent tracker to avoid sending duplicate events
-	tracker := newEventSentTracker(time.Duration(args.EventCacheTTL) * time.Minute)
+	tracker := newEventSentTracker(time.Duration(args.EventCacheTTLMin) * time.Minute)
 
 	// Start periodic cleanup goroutine for the tracker
 	cleanupTicker := time.NewTicker(1 * time.Hour)

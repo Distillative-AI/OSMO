@@ -216,10 +216,6 @@ class MessageWorker:
             elif message_body.pod_event:
                 helpers.send_pod_event(
                     message_body.pod_event, self.workflow_config.max_event_log_lines)
-            elif message_body.pod_conditions:
-                helpers.send_pod_conditions(
-                    message_body.pod_conditions,
-                    self.workflow_config.max_event_log_lines)
             else:
                 logging.error('Ignoring invalid backend listener message type %s, uuid %s',
                               message.type.value, message.uuid)
