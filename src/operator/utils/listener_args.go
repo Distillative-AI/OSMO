@@ -71,7 +71,7 @@ func ListenerParse() ListenerArgs {
 		"Resync period in seconds for Kubernetes informer")
 	stateCacheTTLMin := flag.Int("stateCacheTTLMin",
 		getEnvInt("STATE_CACHE_TTL_MIN", 15),
-		"TTL in minutes for state cache entries")
+		"TTL in minutes for state cache entries (WorkflowListener)")
 	eventCacheTTL := flag.Int("eventCacheTTL",
 		getEnvInt("EVENT_CACHE_TTL_MIN", 15),
 		"TTL in minutes for event deduplication (EventListener)")

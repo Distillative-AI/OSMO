@@ -112,8 +112,8 @@ spec:
         - '{{ .Values.services.backendListener.progressFrequencySec }}'
         - --eventChanSize
         - '{{ .Values.services.backendListener.eventChanSize }}'
-        - --eventCacheTTL
-        - '{{ .Values.services.backendListener.eventCacheTTL }}'
+        - --eventCacheTTLMin
+        - '{{ .Values.services.backendListener.eventCacheTTLMin }}'
         {{- range $arg := .Values.services.backendListener.extraArgs }}
         - {{$arg}}
         {{- end }}
