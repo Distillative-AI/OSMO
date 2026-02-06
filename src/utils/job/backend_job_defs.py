@@ -93,3 +93,14 @@ class BackendSynchronizeBackendTestMixin(pydantic.BaseModel):
     test_configs: Dict[str, Any]
     # Prefix for node conditions/labels
     node_condition_prefix: str
+
+
+class BackendUpdateNodeConditionsMixin(pydantic.BaseModel):
+    """
+    Updates node conditions by applying rules to determine node availability
+    and updating node labels in Kubernetes.
+    """
+    # Node condition rules to apply (pattern -> status regex)
+    rules: Dict[str, str]
+    # Prefix for node condition labels
+    node_condition_prefix: str

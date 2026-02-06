@@ -690,76 +690,6 @@ async def backend_listener_impl(websocket: fastapi.WebSocket, name: str):
         if get_message_task:
             get_message_task.cancel()
 
-
-async def backend_listener_control_impl(websocket: fastapi.WebSocket, name: str):
-    """ Communicates with backend listener. """
-    await websocket.accept()
-    logging.info('Opening listener websocket connection for sending actions to backend %s', name)
-    postgres = connectors.PostgresConnector.get_instance()
-    context = objects.WorkflowServiceContext.get()
-    config = context.config
-
-    try:
-        # Get backend info from database and send node conditions
-        backend_info = connectors.Backend.fetch_from_db(postgres, name)
-        node_conditions = backend_info.node_conditions.dict()
-
-        # Send node conditions to backend listener
-        message = backend_messages.MessageBody(
-            type=backend_messages.MessageType.NODE_CONDITIONS,
-            body=backend_messages.NodeConditionsBody(
-                rules=node_conditions.get('rules', {})
-            )
-        )
-        await websocket.send_text(message.json())
-        logging.info('Sent node conditions to backend %s', name)
-
-        async with redis.asyncio.from_url(config.redis_url) as redis_client:
-            while True:
-                try:
-                    queue_name = connectors.backend_action_queue_name(name)
-                    # Use async blocking brpop which yields control while waiting
-                    result = await redis_client.brpop(queue_name)
-                    if result is not None:
-                        _, attrributes = result
-                        logging.info('Sending action to backend %s from queue: %s with key: %s',
-                                     name, queue_name, attrributes)
-                        json_fields = json.loads(attrributes)
-                        # Send node conditions to backend listener
-                        message = backend_messages.MessageBody(
-                            type=backend_messages.MessageType.NODE_CONDITIONS,
-                            body=backend_messages.NodeConditionsBody(
-                                rules=json_fields.get('rules', {})
-                            ))
-                        await websocket.send_text(message.json())
-                except (ConnectionError,
-                        asyncio.exceptions.TimeoutError) as conn_error:
-                    # Handle connection/timeout errors
-                    logging.error('Connection error for backend %s: %s, retrying in 1 second...',
-                                  name, str(conn_error))
-                    await asyncio.sleep(1)
-                    continue
-                except OSError as os_error:
-                    # Handle system-level errors
-                    logging.error('System error for backend %s: %s, retrying in 1 second...',
-                                  name, str(os_error))
-                    await asyncio.sleep(1)
-                    continue
-                except Exception as error:
-                    # Catch any unexpected errors
-                    logging.exception('Unexpected error for backend %s: %s',
-                                     name, str(error))
-                    raise
-
-    except fastapi.WebSocketDisconnect as err:  # The websocket is closed by client
-        logging.info(
-            'Closing listener websocket connection for backend %s with code %s', name, str(err))
-    except asyncio.exceptions.CancelledError:
-        pass
-    finally:
-        logging.info('Closing listener websocket connection backend %s', name)
-
-
 async def backend_worker_impl(websocket: fastapi.WebSocket, name: str):
     """ Communicates with backend worker. """
     await websocket.accept()
@@ -782,6 +712,8 @@ async def backend_worker_impl(websocket: fastapi.WebSocket, name: str):
                 log('backend_worker', name, config, message_body.logging)
             elif message_body.init:
                 create_backend(name, message_body.init)
+                # Send node conditions update job
+                config_helpers.backend_action_request_helper(name=name)
                 break
             else:
                 raise osmo_errors.OSMOBackendError(f'Unexpected message: {message.type.value}')

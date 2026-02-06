@@ -19,12 +19,13 @@ SPDX-License-Identifier: Apache-2.0
 import abc
 import datetime
 import os
+import re
 import time
 import json
 import logging
 import pydantic
 import yaml
-from typing import Any, Dict, List, Set, Type
+from typing import Any, Dict, List, Set, Type, Tuple
 
 import kubernetes.client as kb_client  # type: ignore
 import kubernetes.client.exceptions as kb_exceptions  # type: ignore
@@ -40,6 +41,7 @@ from src.utils.progress_check import progress
 
 # Max retry times for reschedule a pod
 MAX_RETRY = 5
+DEFAULT_AVAILABLE_CONDITION = {'Ready': 'True'}
 
 
 class BackendJobExecutionContext:
@@ -972,6 +974,145 @@ class BackendSynchronizeBackendTest(backend_job_defs.BackendSynchronizeBackendTe
         return JobResult()
 
 
+class BackendUpdateNodeConditions(backend_job_defs.BackendUpdateNodeConditionsMixin, BackendJob):
+    """Updates node labels by applying rules to determine node availability"""
+
+    @classmethod
+    def _get_allowed_job_type(cls):
+        return ['BackendUpdateNodeConditions']
+
+    @classmethod
+    def _get_job_id(cls, values):
+        return f'{values["backend"]}-update-node-conditions-{common.generate_unique_id()}'
+
+    def _is_node_available(self, node: kb_client.V1Node,
+                           effective_rules: List[Tuple[str, str]]) -> bool:
+        """
+        Determines if a node is available based on condition rules.
+        Replicates logic from backend_listener.is_node_available
+        """
+        # Build effective rules combining provided rules and defaults
+        for condition in node.status.conditions:
+            matched_any_rule = False
+            allowed_by_any_rule = False
+            for pattern, status_regex in effective_rules:
+                try:
+                    if re.match(pattern, condition.type):
+                        matched_any_rule = True
+                        # Anchor the status regex to full match
+                        if re.match(f'^(?:{status_regex})$', condition.status or ''):
+                            allowed_by_any_rule = True
+                            break
+                except re.error:
+                    # Invalid regex should be ignored
+                    continue
+            # If at least one rule matched this condition type but none allowed the status,
+            # the node is not available.
+            if matched_any_rule and not allowed_by_any_rule:
+                return False
+
+        return not node.spec.unschedulable
+
+    def get_effective_rules(self, default_rules: Dict[str, str]) -> List[Tuple[str, str]]:
+        """
+        Build an ordered list of (pattern, status_regex) combining current rules and
+        default rules. Provided rules take precedence; defaults are added only if no
+        provided rule matches the default condition type.
+
+        Args:
+            default_rules: Mapping of condition type (literal) -> status regex
+
+        Returns:
+            List of (pattern, status_regex) pairs to evaluate in order.
+        """
+        effective_rules: List[Tuple[str, str]] = []
+        # First, include all provided rules
+        for pattern, status_regex in self.rules.items():
+            effective_rules.append((pattern, status_regex))
+
+        # Then, add defaults for any default condition type not matched by provided patterns
+        for cond_type, status_regex in default_rules.items():
+            try:
+                has_override = any(re.match(pattern, cond_type) for pattern, _ in effective_rules)
+            except re.error:
+                has_override = False
+            if not has_override:
+                effective_rules.append((f'^{re.escape(cond_type)}$', status_regex))
+
+        return effective_rules
+
+    def _update_node_verified_label(self, v1_api: kb_client.CoreV1Api,
+                                    node: kb_client.V1Node, node_available: bool):
+        """
+        Update the {node_condition_prefix}verified label on a node based on its availability status.
+        Replicates logic from backend_listener.update_node_verified_label
+        """
+        # Construct the label name using the configurable prefix
+        label_name = f'{self.node_condition_prefix}verified'
+
+        # Get current label value and determine new value
+        current_label_value = node.metadata.labels.get(label_name, None)
+        new_label_value = 'True' if node_available else 'False'
+
+        # Only update if the label value has changed
+        if current_label_value != new_label_value:
+            patch_body = {
+                'metadata': {
+                    'labels': {
+                        label_name: new_label_value
+                    }
+                }
+            }
+
+            # Apply the patch to the node
+            try:
+                v1_api.patch_node(node.metadata.name, patch_body)
+                logging.info('Updated %s label on node %s to %s (node_available: %s)',
+                            label_name, node.metadata.name, new_label_value, node_available)
+            except kb_exceptions.ApiException as error:
+                logging.warning('Failed to update %s label on node %s: %s',
+                              label_name, node.metadata.name, error)
+
+    def execute(self, context: BackendJobExecutionContext,
+                progress_writer: progress.ProgressWriter,
+                progress_iter_freq: datetime.timedelta = \
+                    datetime.timedelta(seconds=15)) -> JobResult:
+        """
+        Executes the job. Applies node condition rules to determine availability
+        and updates node labels in Kubernetes.
+        """
+        try:
+            # Build effective rules list (pattern, status_regex) tuples
+            # get_effective_rules automatically adds default rules (including Ready => True)
+            # if no provided rule overrides the default condition types
+            effective_rules = self.get_effective_rules(DEFAULT_AVAILABLE_CONDITION)
+
+            api = context.get_kb_client()
+            v1_api = kb_client.CoreV1Api(api)
+            nodes = v1_api.list_node().items
+            logging.info('Processing %d nodes for node condition update', len(nodes))
+
+            last_timestamp = datetime.datetime.now()
+            for node in nodes:
+                node_available = self._is_node_available(node, effective_rules)
+                self._update_node_verified_label(v1_api, node, node_available)
+                last_timestamp = jobs_base.update_progress_writer(
+                    progress_writer, last_timestamp, progress_iter_freq)
+
+            logging.info('Successfully updated node conditions for %d nodes', len(nodes))
+            return JobResult()
+
+        except urllib3.exceptions.MaxRetryError as error:
+            err_message = f'Failed to list nodes during node condition update. Error: {error}'
+            logging.error(err_message)
+            return JobResult(status=JobStatus.FAILED_RETRY, message=err_message)
+
+        except Exception as error:
+            err_message = f'Unexpected error during node condition update: {error}'
+            logging.exception(err_message)
+            return JobResult(status=JobStatus.FAILED_RETRY, message=err_message)
+
+
 BACKEND_JOBS: Dict[str, Type[BackendJob]] = {
     'CreateGroup': BackendCreateGroup,
     'CleanupGroup': BackendCleanupGroup,
@@ -979,4 +1120,5 @@ BACKEND_JOBS: Dict[str, Type[BackendJob]] = {
     'LabelNode': LabelNode,
     'BackendSynchronizeQueues': BackendSynchronizeQueues,
     'BackendSynchronizeBackendTest': BackendSynchronizeBackendTest,
+    'BackendUpdateNodeConditions': BackendUpdateNodeConditions,
 }

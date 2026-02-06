@@ -20,6 +20,7 @@ from collections import abc
 from datetime import datetime
 import json
 import logging
+import re
 from typing import Any, Dict, List
 
 import pydantic
@@ -191,16 +192,24 @@ def patch_configs(
     new_configs_dict = postgres.get_configs(config_type).dict(by_alias=True, exclude_unset=True)
     return {key: value for key, value in new_configs_dict.items() if key in request.configs_dict}
 
-def backend_action_request_helper(payload: Dict[str, Any], name: str):
-
+def backend_action_request_helper(name: str):
     """ Helper function that implements support for node condition actions. """
-    redis_client = connectors.RedisConnector.get_instance().client
+    postgres = connectors.PostgresConnector.get_instance()
 
-    action_attributes: Dict[str, Any] = {**payload}
-    # Store action_attributes directly in the queue
-    redis_queue_name = connectors.backend_action_queue_name(name)
-    # logging.info('Send action attributes %s to queue %s', action_attributes, redis_queue_name)
-    redis_client.lpush(redis_queue_name, json.dumps(action_attributes))
+    # Get backend to access node_condition_prefix and rules
+    backend = connectors.Backend.fetch_from_db(postgres, name)
+    node_condition_prefix = backend.node_conditions.prefix
+    node_conditions = backend.node_conditions.dict()
+    rules = node_conditions.get('rules', {}) or {}
+
+    # Create BackendUpdateNodeConditions job
+    job = backend_jobs.BackendUpdateNodeConditions(
+        backend=name,
+        rules=rules,
+        node_condition_prefix=node_condition_prefix
+    )
+    job.send_job_to_queue()
+    logging.info('Queued BackendUpdateNodeConditions job for backend %s', name)
 
 def _update_backend_helper(
     postgres: connectors.PostgresConnector,
@@ -220,6 +229,23 @@ def _update_backend_helper(
             values.append(f'{key} = %s')
             params.append(value)
         if key == 'node_conditions' and value:
+            # Validate node condition 'Ready' can only be set to 'True' if explicitly provided
+            # value is a JSON string, parse it to get the rules
+            try:
+                node_conditions_dict = json.loads(value)
+            except json.JSONDecodeError as e:
+                raise osmo_errors.OSMOUserError(
+                    f'Invalid node_conditions format: {str(e)}') from e
+
+            rules = node_conditions_dict.get('rules', {})
+            for pattern, status_regex in rules.items():
+                try:
+                    if re.match(pattern, 'Ready') and status_regex != 'True':
+                        raise osmo_errors.OSMOUserError(
+                            "Overriding 'Ready' rule is not allowed; only 'True' is permitted")
+                except re.error:
+                    # Ignore invalid regex here; other logic guards re errors during matching
+                    continue
             send_update = True
         if key == 'tests' and value:
             # Check for duplicates in the original list
@@ -243,10 +269,7 @@ def _update_backend_helper(
 
     # Check if the backend node_conditions has changed
     if send_update:
-        backend_action_request_helper(
-            payload=yaml.safe_load(configs['node_conditions']),
-            name=configs['name'],
-        )
+        backend_action_request_helper(name=configs['name'])
 
 def create_backend_config_history_entry(
     postgres: connectors.PostgresConnector,

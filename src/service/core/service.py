@@ -348,8 +348,6 @@ def configure_app(target_app: fastapi.FastAPI, config: objects.WorkflowServiceCo
                                            endpoint=backend_helpers.backend_listener_impl)
         target_app.add_api_websocket_route('/api/agent/listener/heartbeat/backend/{name}',
                                            endpoint=backend_helpers.backend_listener_impl)
-        target_app.add_api_websocket_route('/api/agent/listener/control/backend/{name}',
-                                           endpoint=backend_helpers.backend_listener_control_impl)
         target_app.add_api_websocket_route('/api/agent/worker/backend/{name}',
                                            endpoint=backend_helpers.backend_worker_impl)
 

@@ -35,7 +35,8 @@ func GetNodeHostname(node *corev1.Node) string {
 }
 
 // BuildUpdateNodeBody creates an UpdateNodeBody from a node
-func BuildUpdateNodeBody(node *corev1.Node, isDelete bool) *pb.UpdateNodeBody {
+func BuildUpdateNodeBody(node *corev1.Node, isDelete bool,
+	nodeConditionPrefix string) *pb.UpdateNodeBody {
 	hostname := GetNodeHostname(node)
 
 	// Build conditions list (types with status True)
@@ -46,8 +47,8 @@ func BuildUpdateNodeBody(node *corev1.Node, isDelete bool) *pb.UpdateNodeBody {
 		}
 	}
 
-	// Calculate availability: Ready==True && !Unschedulable
-	available := IsNodeAvailable(node)
+	// Calculate availability: check verified label first, then Ready==True && !Unschedulable
+	available := IsNodeAvailable(node, nodeConditionPrefix)
 
 	// Build allocatable fields
 	allocatableFields := make(map[string]string)
@@ -92,12 +93,24 @@ func BuildUpdateNodeBody(node *corev1.Node, isDelete bool) *pb.UpdateNodeBody {
 	}
 }
 
-// IsNodeAvailable checks if a node is available (Ready==True && !Unschedulable)
-func IsNodeAvailable(node *corev1.Node) bool {
+// IsNodeAvailable checks if a node is available.
+// First checks the verified label (if nodeConditionPrefix is provided and label exists),
+// then falls back to Ready==True && !Unschedulable
+func IsNodeAvailable(node *corev1.Node, nodeConditionPrefix string) bool {
 	if node.Spec.Unschedulable {
 		return false
 	}
 
+	// Check verified label first if prefix is provided
+	if nodeConditionPrefix != "" {
+		labelName := nodeConditionPrefix + "verified"
+		if labelValue, exists := node.Labels[labelName]; exists {
+			// Label exists, use it to determine availability
+			return labelValue == "True"
+		}
+	}
+
+	// Fall back to checking Ready condition if label doesn't exist
 	for _, cond := range node.Status.Conditions {
 		if cond.Type == corev1.NodeReady {
 			return cond.Status == corev1.ConditionTrue

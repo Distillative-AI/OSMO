@@ -513,7 +513,7 @@ func (rl *ResourceListener) buildResourceMessage(
 	hostname := utils.GetNodeHostname(node)
 
 	// Build UpdateNodeBody object
-	body := utils.BuildUpdateNodeBody(node, isDelete)
+	body := utils.BuildUpdateNodeBody(node, isDelete, rl.args.NodeConditionPrefix)
 
 	// Check if we should send (deduplication)
 	if !isDelete && !tracker.HasChanged(hostname, body) {

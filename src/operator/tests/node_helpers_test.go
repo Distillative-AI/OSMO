@@ -170,7 +170,7 @@ func TestIsNodeAvailableFromJSON(t *testing.T) {
 				},
 			}
 
-			result := utils.IsNodeAvailable(node)
+			result := utils.IsNodeAvailable(node, "")
 			if result != tc.Expected.Available {
 				t.Errorf("IsNodeAvailable() = %v, expected %v", result, tc.Expected.Available)
 			}
@@ -211,7 +211,7 @@ func TestBuildResourceBodyFromJSON(t *testing.T) {
 				},
 			}
 
-			result := utils.BuildUpdateNodeBody(node, tc.Input.IsDelete)
+			result := utils.BuildUpdateNodeBody(node, tc.Input.IsDelete, "")
 
 			// Validate hostname
 			if tc.Expected.Hostname != "" {
@@ -382,7 +382,7 @@ func TestToKi_NegativeBytes(t *testing.T) {
 func TestBuildResourceBody_EmptyNode(t *testing.T) {
 	// Test with completely empty node
 	node := &corev1.Node{}
-	result := utils.BuildUpdateNodeBody(node, false)
+	result := utils.BuildUpdateNodeBody(node, false, "")
 
 	if result.Hostname != "-" {
 		t.Errorf("Empty node hostname = %v, expected '-'", result.Hostname)
@@ -428,7 +428,7 @@ func BenchmarkIsNodeAvailable(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		utils.IsNodeAvailable(node)
+		utils.IsNodeAvailable(node, "")
 	}
 }
 
@@ -478,6 +478,6 @@ func BenchmarkBuildResourceBody(b *testing.B) {
 
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		utils.BuildUpdateNodeBody(node, false)
+		utils.BuildUpdateNodeBody(node, false, "")
 	}
 }

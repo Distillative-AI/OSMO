@@ -99,13 +99,6 @@ async def backend_worker_communication(websocket: fastapi.WebSocket,
     await helpers.backend_worker_impl(websocket, name)
 
 
-@app.websocket('/api/agent/listener/control/backend/{name}')
-async def backend_listener_control_communication(websocket: fastapi.WebSocket,
-                                             name: str):
-    """ Endpoint wrapper for backend queue communication with backend listener. """
-    await helpers.backend_listener_control_impl(websocket, name)
-
-
 def main():
     config = objects.WorkflowServiceConfig.load()
     agent_service_config = BackendServiceConfig.load()
